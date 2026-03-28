@@ -1,5 +1,7 @@
 import axios from "axios";
+import { deleteCookie } from "cookies-next";
 import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
 
 const createServerApi = () => {
   const instance = axios.create({
@@ -34,6 +36,17 @@ const createServerApi = () => {
 
     return config;
   });
+
+  instance.interceptors.response.use(
+    (response) => response,
+    async (error) => {
+      if (error.response?.status === 401 || error.response?.status === 403) {
+        deleteCookie("session_token");
+        redirect("/auth/login?session=expired");
+      }
+      return Promise.reject(error);
+    },
+  );
 
   return instance;
 };

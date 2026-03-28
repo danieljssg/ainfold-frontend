@@ -1,11 +1,12 @@
 "use client";
 
 import { useAuth } from "@/providers/AuthProvider";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
+import { useSearchParams } from "next/navigation";
+import { toast } from "sonner";
 import api from "@/lib/api";
 import { setCookie } from "cookies-next";
 import { FcGoogle } from "react-icons/fc";
-import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -24,6 +25,8 @@ import {
 
 export function LoginForm() {
   const { setUser, setIsAuthenticated } = useAuth();
+  const searchParams = useSearchParams();
+  const toastShown = useRef(false);
   const [formData, setFormData] = useState({
     email: process.env.NEXT_PUBLIC_USERNAME || "",
     password: process.env.NEXT_PUBLIC_USER_PASSWORD || "",
@@ -40,7 +43,16 @@ export function LoginForm() {
       }
     };
     getCsrf();
-  }, []);
+
+    // Mostrar toast si el token expiró
+    const sessionStatus = searchParams.get("session");
+    if (sessionStatus === "expired" && !toastShown.current) {
+      toast.error("Tu sesión ha expirado", {
+        description: "Por favor, ingresa de nuevo para continuar.",
+      });
+      toastShown.current = true;
+    }
+  }, [searchParams]);
 
   const handleGoogleLogin = () => {
     window.location.href = `${process.env.NEXT_PUBLIC_API_URL}/auth/google`;

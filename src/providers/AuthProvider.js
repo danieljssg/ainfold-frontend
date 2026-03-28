@@ -53,6 +53,12 @@ export const AuthProvider = ({ children }) => {
         ) {
           setIsAuthenticated(false);
           setUser(null);
+          const isAuthRoute =
+            pathname === "/auth/login" ||
+            pathname.startsWith("/auth/google/callback");
+          if (!isAuthRoute) {
+            router.push("/auth/login?session=expired");
+          }
         }
       } finally {
         setLoading(false);

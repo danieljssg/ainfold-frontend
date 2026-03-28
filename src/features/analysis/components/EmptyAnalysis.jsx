@@ -1,10 +1,11 @@
+import { Loader2 } from "lucide-react";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import React from "react";
 
-export const EmptyAnalysis = () => {
+export const EmptyAnalysis = ({ loading, error }) => {
   return (
-    <section className="flex flex-col gap-4 items-center justify-center border-dashed border rounded-lg min-h-64">
+    <section className="flex flex-col gap-4 items-center justify-center border-dashed border rounded-lg min-h-64 w-full">
       <div className="flex flex-col gap-4 items-center justify-center">
         <h2 className="font-display text-2xl text-zinc-100">
           No tienes análisis aún
@@ -12,13 +13,19 @@ export const EmptyAnalysis = () => {
         <p className="text-zinc-400 text-sm">
           Sube un CV para comenzar a analizar perfiles
         </p>
-        <Link
-          href="/analysis"
-          className="inline-flex items-center px-4 py-2 rounded-xl font-medium bg-primary hover:bg-purple-300 hover:text-zinc-900 transition-all cursor-pointer  duration-200 ease-in-out"
-        >
-          Comenzar análisis
-          <ArrowRight className="ml-2 w-4 h-4" />
-        </Link>
+        {loading ? (
+          <Loader2 className="h-10 w-10 animate-spin text-zinc-500 mb-4" />
+        ) : error ? (
+          <p className="text-red-400 mb-2">Error al cargar los análisis</p>
+        ) : (
+          <Link
+            href="/analysis"
+            className="inline-flex items-center px-4 py-2 rounded-xl font-medium bg-primary hover:bg-purple-300 hover:text-zinc-900 transition-all cursor-pointer  duration-200 ease-in-out"
+          >
+            Comenzar análisis
+            <ArrowRight className="ml-2 w-4 h-4" />
+          </Link>
+        )}
       </div>
     </section>
   );

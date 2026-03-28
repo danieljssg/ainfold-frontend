@@ -1,6 +1,6 @@
 export default function SkillsMatrix({ skills }) {
-  const technicalSkills = skills.technical || [];
-  const softSkills = skills.soft || [];
+  const technicalSkills = skills?.technical || [];
+  const softSkills = skills?.soft || [];
 
   return (
     <div className="reveal reveal-4 bg-zinc-900 border border-zinc-800 rounded-2xl p-6 space-y-5">
@@ -12,7 +12,7 @@ export default function SkillsMatrix({ skills }) {
           Técnicas
         </p>
         <div className="flex flex-wrap gap-2">
-          {technicalSkills.map((skill) => (
+          {technicalSkills?.map((skill) => (
             <span
               key={skill}
               className="text-xs bg-zinc-800 border border-zinc-700 text-zinc-300 px-3 py-1.5 rounded-lg"
@@ -29,7 +29,7 @@ export default function SkillsMatrix({ skills }) {
           Blandas
         </p>
         <div className="flex flex-wrap gap-2">
-          {softSkills.map((skill) => (
+          {softSkills?.map((skill) => (
             <span
               key={skill}
               className="text-xs bg-zinc-800/50 border border-zinc-800 text-zinc-400 px-3 py-1.5 rounded-lg"

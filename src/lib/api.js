@@ -1,5 +1,6 @@
 import axios from "axios";
 import { getCookie, deleteCookie } from "cookies-next";
+import { redirect } from "next/navigation";
 
 const api = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_URL || "http://localhost:4000/api",
@@ -69,7 +70,9 @@ api.interceptors.response.use(
     }
 
     if (error.response?.status === 403 && !isAuthPage) {
-      console.error("Error de seguridad (CSRF) o permisos insuficientes.");
+      deleteCookie("session_token");
+      deleteCookie("x-csrf-token");
+      redirect("/auth/login?session=expired");
     }
 
     return Promise.reject(error);
