@@ -2,19 +2,44 @@
 
 import { useState } from "react";
 
-export default function FileDropzone({ onFileSelect }) {
-  const [hasFile, setHasFile] = useState(false);
+export default function FileDropzone({ onFileSelect, isSubmitting }) {
+  const [file, setFile] = useState(null);
   const [isDragActive, setIsDragActive] = useState(false);
 
   const handleDrag = (e, active) => {
     e.preventDefault();
     e.stopPropagation();
+    if (isSubmitting) return;
     setIsDragActive(active);
+  };
+
+  const processFile = (selectedFile) => {
+    if (!selectedFile) return;
+    setFile(selectedFile);
+    onFileSelect(selectedFile);
+  };
+
+  const handleDrop = (e) => {
+    handleDrag(e, false);
+    if (isSubmitting) return;
+    const droppedFile = e.dataTransfer.files[0];
+    if (droppedFile?.type === "application/pdf") {
+      processFile(droppedFile);
+    }
+  };
+
+  const handleFileInput = (e) => {
+    const selectedFile = e.target.files[0];
+    if (selectedFile) {
+      processFile(selectedFile);
+    }
   };
 
   return (
     <div
-      className={`border-2 border-dashed rounded-2xl p-10 flex flex-col items-center justify-center gap-6 transition-all duration-200 group cursor-pointer ${
+      className={`border-2 border-dashed rounded-2xl p-10 flex flex-col items-center justify-center gap-6 transition-all duration-200 group cursor-pointer relative ${
+        isSubmitting ? "opacity-50 cursor-not-allowed" : ""
+      } ${
         isDragActive
           ? "border-purple-400 bg-purple-400/5"
           : "border-zinc-700 hover:border-purple-400/50 hover:bg-zinc-900/50"
@@ -23,12 +48,19 @@ export default function FileDropzone({ onFileSelect }) {
       onDragEnter={(e) => handleDrag(e, true)}
       onDragLeave={(e) => handleDrag(e, false)}
       onDragOver={(e) => handleDrag(e, true)}
-      onDrop={(e) => {
-        handleDrag(e, false);
-        setHasFile(true);
-      }}
+      onDrop={handleDrop}
+      onClick={() => !isSubmitting && document.getElementById("cv-upload").click()}
     >
-      {!hasFile ? (
+      <input
+        id="cv-upload"
+        type="file"
+        accept=".pdf"
+        className="hidden"
+        onChange={handleFileInput}
+        disabled={isSubmitting}
+      />
+
+      {!file ? (
         <>
           <div
             className={`w-16 h-16 rounded-full border-2 flex items-center justify-center transition-all ${
@@ -38,7 +70,9 @@ export default function FileDropzone({ onFileSelect }) {
             }`}
           >
             <svg
-              className={`w-7 h-7 transition-colors ${isDragActive ? "text-purple-400" : "text-zinc-500 group-hover:text-purple-400"}`}
+              className={`w-7 h-7 transition-colors ${
+                isDragActive ? "text-purple-400" : "text-zinc-500 group-hover:text-purple-400"
+              }`}
               fill="none"
               stroke="currentColor"
               strokeWidth="1.5"
@@ -52,23 +86,12 @@ export default function FileDropzone({ onFileSelect }) {
             </svg>
           </div>
           <div className="text-center space-y-1">
-            <p className="text-zinc-300 text-sm font-semibold">
-              Arrastra tu CV aquí
-            </p>
+            <p className="text-zinc-300 text-sm font-semibold">Arrastra tu CV aquí</p>
             <p className="text-zinc-400 text-xs">o haz clic para seleccionar</p>
             <p className="text-zinc-500 text-xs">PDF · máx. 5MB</p>
           </div>
-          <button
-            type="button"
-            onClick={() => setHasFile(true)}
-            className="text-xs text-purple-400 border border-purple-400/30 px-5 py-2 rounded-full hover:bg-purple-400/10 transition-colors font-medium"
-          >
-            Seleccionar archivo
-          </button>
         </>
-      ) : null}
-
-      {hasFile && (
+      ) : (
         <div className="w-full space-y-4 animate-in fade-in slide-in-from-bottom-4">
           <div className="flex items-center gap-4 bg-gradient-to-r from-purple-400/10 to-zinc-900 border border-purple-400/20 rounded-xl p-4">
             <div className="w-10 h-10 bg-purple-400/20 rounded-lg flex items-center justify-center flex-shrink-0">
@@ -86,18 +109,21 @@ export default function FileDropzone({ onFileSelect }) {
                 />
               </svg>
             </div>
-            <div className="flex-1">
-              <p className="text-zinc-300 text-sm font-semibold">
-                curriculum_daniel_2025.pdf
-              </p>
+            <div className="flex-1 overflow-hidden">
+              <p className="text-zinc-300 text-sm font-semibold truncate">{file.name}</p>
               <p className="text-zinc-500 text-xs mt-1">
-                2.3 MB · Listo para analizar
+                {(file.size / 1024 / 1024).toFixed(2)} MB · Listo para analizar
               </p>
             </div>
             <button
               type="button"
-              onClick={() => setHasFile(false)}
-              className="flex-shrink-0 text-zinc-500 hover:text-zinc-300 hover:bg-zinc-800/50 p-2 rounded-lg transition-colors"
+              onClick={(e) => {
+                e.stopPropagation();
+                setFile(null);
+                onFileSelect(null);
+              }}
+              disabled={isSubmitting}
+              className="flex-shrink-0 text-zinc-500 hover:text-zinc-300 hover:bg-zinc-800/50 p-2 rounded-lg transition-colors disabled:opacity-30"
             >
               <svg
                 className="w-5 h-5"
@@ -106,11 +132,7 @@ export default function FileDropzone({ onFileSelect }) {
                 strokeWidth="1.5"
                 viewBox="0 0 24 24"
               >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M6 18 18 6M6 6l12 12"
-                />
+                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
               </svg>
             </button>
           </div>

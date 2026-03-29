@@ -30,7 +30,7 @@ export default function Navigation() {
         <div className="flex items-center gap-3">
           <Link
             href="/"
-            className="font-display text-xl md:text-2xl text-zinc-100 font-bold hover:text-purple-400 transition-all duration-300"
+            className="font-display text-xl md:text-2xl text-zinc-100  hover:text-purple-400 transition-all duration-300"
           >
             AI'nFold
           </Link>
@@ -82,7 +82,7 @@ export default function Navigation() {
               </Link>
               <button
                 onClick={logout}
-                className="text-sm font-medium text-red-400/80 hover:text-red-400 transition-colors flex items-center gap-2 pl-4 border-l border-zinc-500"
+                className="text-sm font-medium text-rose-400 hover:text-destructive transition-colors flex items-center gap-2 pl-4 border-l border-zinc-500"
               >
                 Cerrar sesión
               </button>
@@ -90,7 +90,6 @@ export default function Navigation() {
           )}
         </div>
 
-        {/* Mobile Menu Toggle */}
         <MobileMenu isAuthenticated={isAuthenticated} logout={logout} />
       </nav>
     </header>

@@ -1,6 +1,5 @@
-import FileDropzone from "@/components/FileDropzone";
-import FormFields from "@/components/FormFields";
 import { BackButton } from "@/components/shared/BackButton";
+import AnalysisCreateForm from "@/features/analysis/components/AnalysisCreateForm";
 
 export const metadata = {
   title: "Subir CV | AI'nFold",
@@ -9,16 +8,19 @@ export const metadata = {
 
 export default function UploadPage() {
   return (
-    <section className="w-full flex flex-col gap-4">
+    <section className="w-full flex flex-col gap-4 pb-20">
       <div id="analysis">
-        <div className="flex items-center gap-4 mb-6">
+        <div className="flex items-center gap-4 mb-8">
           <BackButton />
-          <p className="section-label">Generar análisis </p>
+          <div>
+            <p className="section-label">Generar nuevo análisis</p>
+            <h2 className="text-zinc-500 text-xs font-medium uppercase tracking-tight mt-1">
+              Completa los datos para iniciar la magia de la IA
+            </h2>
+          </div>
         </div>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          <FormFields />
-          <FileDropzone />
-        </div>
+
+        <AnalysisCreateForm />
       </div>
     </section>
   );
