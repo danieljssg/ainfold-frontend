@@ -1,7 +1,7 @@
 "use client";
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useRef, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
-import { deleteCookie } from "cookies-next";
+import { deleteCookie, getCookie } from "cookies-next";
 import api from "@/lib/api";
 
 const AuthContext = createContext({});
@@ -15,6 +15,8 @@ export const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const router = useRouter();
   const pathname = usePathname();
+
+  const sessionChecked = useRef(false);
 
   const clearSession = () => {
     deleteCookie("session_token");
@@ -33,37 +35,38 @@ export const AuthProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    // No validar sesión en rutas de auth — evita loop
     if (isAuthRoute(pathname)) {
+      setLoading(false);
+      return;
+    }
+
+    if (sessionChecked.current) return;
+    sessionChecked.current = true;
+
+    const hasToken = getCookie("session_token");
+    if (!hasToken) {
       setLoading(false);
       return;
     }
 
     const checkSession = async () => {
       try {
-        // Obtener CSRF primero si no existe cookie
-        const { data: csrf } = await api.get("/csrf-token");
-        if (csrf?.csrfToken) {
-          // La cookie la setea el backend automáticamente con Set-Cookie
-          // Si no, guardarla manualmente no es necesario con withCredentials
-        }
-
         const { data } = await api.get("/auth/validate");
         if (data.success) {
           setUser(data.user);
           setIsAuthenticated(true);
+        } else {
+          clearSession();
         }
       } catch {
         clearSession();
-        // El interceptor de api.js ya redirige en 401/403
-        // No redirigir aquí para evitar doble redirect
       } finally {
         setLoading(false);
       }
     };
 
     checkSession();
-  }, []);
+  }, [pathname]);
 
   return (
     <AuthContext.Provider

@@ -4,7 +4,6 @@ import { useState, useRef, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import api from "@/lib/api";
 import { toast } from "sonner";
-import { BackButton } from "@/components/shared/BackButton";
 import FormFields from "@/components/FormFields";
 import FileDropzone from "@/components/FileDropzone";
 import AnalysisProgress from "@/components/AnalysisProgress";
@@ -87,13 +86,14 @@ export default function AnalysisCreateForm() {
     } catch (error) {
       setIsSubmitting(false);
       toast.error(
-        error.response?.data?.message || "Error al iniciar el análisis."
+        error.response?.data?.message || "Error al iniciar el análisis.",
       );
     }
   };
 
   const handleDismissProgress = () => {
     setShowProgress(false);
+    router.push("/dashboard");
     toast("Tranquilo, tu análisis se está procesando en segundo plano", {
       description: "Te avisaremos cuando esté listo.",
       icon: <Rocket className="w-4 h-4 text-purple-400" />,
@@ -104,9 +104,9 @@ export default function AnalysisCreateForm() {
     <>
       <form onSubmit={handleSubmit} className="space-y-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
-          <div className="bg-zinc-900/50 border border-zinc-800 p-8 rounded-3xl space-y-6">
-            <h3 className="text-zinc-200 font-display text-xl">
-              Información del Candidato
+          <div className="border-2 border-zinc-800 p-8 rounded-3xl space-y-6">
+            <h3 className="text-zinc-100 font-display text-xl">
+              Información para el análisis
             </h3>
             <FormFields
               name={name}
@@ -164,7 +164,7 @@ export default function AnalysisCreateForm() {
                 Continuar esperando en segundo plano
               </button>
               <p className="text-[10px] text-zinc-600 text-center">
-                El proceso suele tardar entre 30 y 60 segundos
+                El proceso suele tardar entre 1 y 5 minutos
               </p>
             </div>
           </div>

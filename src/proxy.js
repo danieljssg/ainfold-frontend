@@ -18,19 +18,25 @@ const isPublic = (pathname) =>
 export function proxy(request) {
   const { pathname } = request.nextUrl;
 
-  if (pathname === "/auth/login") {
+  if (pathname === "/auth/login" || pathname === "/") {
     const sessionToken = request.cookies.get("session_token")?.value;
     const csrfToken = request.cookies.get("x-csrf-token")?.value;
 
     if (sessionToken && csrfToken) {
       try {
         const payload = JSON.parse(atob(sessionToken.split(".")[1]));
-        if (payload.exp && Date.now() < payload.exp * 1000) {
+        const isValid = payload.exp && Date.now() < payload.exp * 1000;
+
+        if (isValid) {
+          // Solo para /auth/login: no redirigir si hay un error de sesión explícito
+          if (pathname === "/auth/login") {
+            const sessionError = request.nextUrl.searchParams.get("session");
+            if (sessionError) return NextResponse.next();
+          }
+
           return NextResponse.redirect(new URL("/dashboard", request.url));
         }
-      } catch (e) {
-        // Ignorar error y dejar que cargue el login si el token es inválido
-      }
+      } catch {}
     }
   }
 
@@ -39,7 +45,6 @@ export function proxy(request) {
   const sessionToken = request.cookies.get("session_token")?.value;
   const csrfToken = request.cookies.get("x-csrf-token")?.value;
 
-  // Si falta cualquiera de los dos — redirigir y borrar ambas cookies
   if (!sessionToken || !csrfToken) {
     const res = NextResponse.redirect(
       new URL("/auth/login?session=required", request.url),
@@ -49,7 +54,6 @@ export function proxy(request) {
     return res;
   }
 
-  // Verificar expiración del JWT sin librería (edge runtime)
   try {
     const payload = JSON.parse(atob(sessionToken.split(".")[1]));
     if (payload.exp && Date.now() >= payload.exp * 1000) {
@@ -77,5 +81,7 @@ export function proxy(request) {
 }
 
 export const config = {
-  matcher: ["/((?!api|_next/static|_next/image|favicon.ico|.*\\..*$).*)"],
+  matcher: [
+    "/((?!api|_next/static|_next/image|_next/data|favicon.ico|.*\\..*$).*)",
+  ],
 };
