@@ -9,7 +9,7 @@ export const metadata = {
 
 export default function UploadPage() {
   return (
-    <div className="max-w-5xl mx-auto px-6 py-12 container">
+    <section className="w-full flex flex-col gap-4">
       <div id="analysis">
         <div className="flex items-center gap-4 mb-6">
           <BackButton />
@@ -20,6 +20,6 @@ export default function UploadPage() {
           <FileDropzone />
         </div>
       </div>
-    </div>
+    </section>
   );
 }

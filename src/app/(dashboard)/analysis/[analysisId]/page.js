@@ -5,18 +5,13 @@ import SkillsMatrix from "@/features/analysis/components/SkillsMatrix";
 import SummaryContent from "@/features/analysis/components/SummaryContent";
 import { getAnalysisById } from "@/features/analysis/services/analysisServices";
 import { BackButton } from "@/components/shared/BackButton";
-import { redirect } from "next/navigation";
-import { toast } from "sonner";
 
 export default async function AnalysisPage({ params }) {
   const { analysisId } = await params;
   const analysis = await getAnalysisById(analysisId);
-  if (!analysis) {
-    toast.error("Análisis no encontrado");
-    redirect("/dashboard");
-  }
+
   return (
-    <section className="max-w-5xl mx-auto px-6 py-12 space-y-6">
+    <section className="w-full flex flex-col gap-4">
       <div id="analysis">
         <div className="flex items-center gap-4 mb-6">
           <BackButton />
@@ -29,7 +24,10 @@ export default async function AnalysisPage({ params }) {
             <SkillsMatrix skills={analysis?.summary?.skills || []} />
             <RadarChart radarData={analysis?.radarStats || {}} />
           </div>
-          <AIInsight insight={analysis?.ai_insight || ""} />
+          <AIInsight
+            insight={analysis?.ai_insight || ""}
+            analysisId={analysisId}
+          />
           <SummaryContent summary={analysis?.summary || {}} />
         </div>
       </div>

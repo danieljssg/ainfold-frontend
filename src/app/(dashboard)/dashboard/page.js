@@ -2,7 +2,7 @@ import { AnalysisList } from "@/features/analysis/components/AnalysisList";
 
 export default function DashboardPage() {
   return (
-    <section className="container py-8 max-w-6xl mx-auto w-full flex flex-col gap-4">
+    <section className="w-full flex flex-col gap-4">
       <header>
         <h1 className="font-display text-4xl text-zinc-100 mb-2">
           Mis análisis

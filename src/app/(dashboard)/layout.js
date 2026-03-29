@@ -18,7 +18,7 @@ export default function DashboardLayout({ children }) {
   }
 
   return (
-    <main className="pt-20 container mx-auto flex flex-col gap-4 px-4 w-full">
+    <main className="pt-20 container mx-auto max-w-5xl flex flex-col gap-4 px-4 w-full">
       {children}
     </main>
   );
