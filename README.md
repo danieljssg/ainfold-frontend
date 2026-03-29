@@ -1,36 +1,69 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 🎙️ Spotz Analysis: AI'nFold
 
-## Getting Started
+## _Arte, Código y Latencia — Transformando datos en narrativa sonora_
 
-First, run the development server:
+AI'nFold es una plataforma que recibe datos de candidatos, los procesa mediante IA y genera un análisis completo, y mediante generación de audio, narra la relación entre sus hobbies y su perfil profesional: **Habilidades Transferibles**.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+<!-- ---
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 📺 Demo en Video
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+<iframe width="560" height="315" src="https://www.youtube.com/embed/TU_VIDEO_ID" title="Spotz Analysis - Demo completa" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+--- -->
 
-## Learn More
+## 💬 El Hook
 
-To learn more about Next.js, take a look at the following resources:
+> _"Uno de los retos en RRHH, sobre todo en Venezuela, es que bajo diversas circunstancias… El ingeniero aprendió repostería, la contadora es manicurista, el Dev aprendió a ser barista y el médico es locutor. No basta con la experiencia técnica; son esos detalles que pasan desapercibidos los que marcan la diferencia. AI'nFold busca ir más allá, explorando cómo lo que te apasiona se transfiere a tu trabajo diario."_
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🎨 Frontend — UX/UI con Propósito
 
-## Deploy on Vercel
+El frontend está diseñado para ser visualmente aceptable y poder manejar estados asíncronos "casi" en tiempo real. --haría falta la implementación de WebSockets para una mejor experiencia en tiempo real.--
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### 🛠️ Stack Tecnológico
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **Framework:** Next.js 16+ (App Router).
+- **Estilos:** Tailwind CSS v4.
+<!-- - **Animaciones:** Framer Motion para transiciones suaves y estados de carga. -->
+- **Gráficos:** Recharts para la visualización de "Radar de Habilidades".
+- **Estado Global:** Context API para autenticación y persistencia de sesión.
+
+### 🧩 Componentes Clave
+
+- **Radar de Habilidades:** Una visualización pentagonal que evalúa Adapabildad, Precisión Técnica, Creatividad, Resiliencia y Comunicación de Impacto.
+- **Análisis Cards con Polling:** Las tarjetas del dashboard consultan el estado del `job` cada 6 segundos, mostrando progreso en tiempo real (pending → processing → completed/failed).
+- **AI_Insight Audio Player:** Un reproductor integrado que consume los audios `.mp3` generados por el modelo Kokoro-TTS en el backend.
+
+### 🔐 Seguridad y Auth
+
+- **Protección en el Edge:** `src/proxy.js` actúa como middleware, validando JWTs antes de que lleguen a los Server Components.
+- **Interceptor de Axios:** Gestión automática de tokens CSRF y redirección por expiración de sesión.
+- **OAuth:** Integración funcional con Google OAuth para una entrada rápida.
+
+---
+
+## 🏗️ Infraestructura en Cubepath
+
+Toda la plataforma vive en una sola instancia **GP.Micro (2 vCPU / 4 GB RAM)** de Cubepath.
+
+- **Orquestación:** Dokploy (Docker).
+- **Persistencia Visual:** Volúmenes bindeados en la VM para compartir archivos de audio entre el Worker de IA y el servidor de archivos estáticos del Frontend.
+- **Optimización de RAM:** Uso estratégico de 4GB de SWAP para absorber picos de procesamiento del modelo TTS.
+
+---
+
+## 🛠️ Instalación y Configuración
+
+1.  Clona el repositorio: `git clone https://github.com/danieljssg/ainfold-frontend`
+2.  Instala dependencias: `pnpm install`
+3.  Configura las variables de entorno en `.env.local`:
+    ```env
+    NEXT_PUBLIC_API_URL=https://tu-api.com/api
+    ```
+4.  Inicia el servidor de desarrollo: `pnpm dev`
+
+---
+
+> Desarrollado desde **Venezuela** por Daniel Saud. Porque contar historias que se escriben con código también es una forma de arte. 🇻🇪
