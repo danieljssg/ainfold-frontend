@@ -19,7 +19,7 @@ export const EmptyAnalysis = ({ loading, error }) => {
           <p className="text-red-400 mb-2">Error al cargar los análisis</p>
         ) : (
           <Link
-            href="/analysis"
+            href="/analysis/create"
             className="inline-flex items-center px-4 py-2 rounded-xl font-medium bg-primary hover:bg-purple-300 hover:text-zinc-900 transition-all cursor-pointer  duration-200 ease-in-out"
           >
             Comenzar análisis

@@ -28,8 +28,8 @@ export default function RadarChart({ radarData = {} }) {
   const dimensionsCount = chartData.length;
 
   return (
-    <div className="reveal reveal-3 bg-zinc-900 border border-zinc-800 rounded-2xl p-8 h-full flex flex-col">
-      <div className="flex items-center justify-between mb-6">
+    <div className="p-8 h-full flex flex-col w-full">
+      <div className="flex items-center justify-between ">
         <div>
           <p className="section-label mb-1">Radar de competencias</p>
           <div className="w-12 h-1 bg-purple-400/30 rounded-full" />
@@ -41,8 +41,8 @@ export default function RadarChart({ radarData = {} }) {
 
       <div className="flex-1 min-h-75 w-full flex items-center justify-center">
         <ResponsiveContainer width="100%" height="100%">
-          <RechartsRadar cx="50%" cy="50%" outerRadius="50%" data={chartData}>
-            <PolarGrid stroke="#27272a" />
+          <RechartsRadar cx="50%" cy="50%" outerRadius="60%" data={chartData}>
+            <PolarGrid stroke="#444444" />
             <PolarAngleAxis
               dataKey="subject"
               tick={{ fill: "#a1a1aa", fontSize: 12, fontWeight: 500 }}

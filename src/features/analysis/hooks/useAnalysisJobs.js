@@ -20,10 +20,8 @@ export function useAnalysisJobs(interval = 6000) {
   }, []);
 
   useEffect(() => {
-    // Primera carga
     fetchJobs();
 
-    // Configurar polling
     const timer = setInterval(() => {
       fetchJobs();
     }, interval);

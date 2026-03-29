@@ -10,7 +10,14 @@ export default function SummaryContent({ summary = {} }) {
     {
       title: "Perfil Profesional",
       icon: <FileText className="w-4 h-4" />,
-      content: profile,
+      content: (
+        <div className="flex flex-col gap-2">
+          {profile}
+          <div className="bg-accent/30 border border-zinc-800/50 rounded-lg p-3">
+            <p className="text-zinc-300 text-xs leading-relaxed">{justify}</p>
+          </div>
+        </div>
+      ),
     },
     {
       title: "Experiencia Clave",
@@ -26,40 +33,24 @@ export default function SummaryContent({ summary = {} }) {
 
   return (
     <div className="space-y-6">
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div className="flex flex-col gap-4">
         {sections.map((section) => (
           <div
             key={section.title}
             className="bg-zinc-900 border border-zinc-800 rounded-2xl p-6 hover:border-zinc-700 transition-colors"
           >
-            <div className="flex items-center gap-2 mb-4 text-zinc-400">
+            <div className="flex items-center gap-2 mb-4 text-purple-200">
               {section.icon}
               <span className="text-xs uppercase font-bold tracking-widest pt-0.5">
                 {section.title}
               </span>
             </div>
-            <p className="text-zinc-300 text-sm leading-relaxed">
+            <div className=" text-sm leading-relaxed font-light">
               {section.content || "Información no disponible"}
-            </p>
+            </div>
           </div>
         ))}
       </div>
-
-      {justify && (
-        <div className="bg-purple-400/5 border border-purple-400/10 rounded-2xl p-6 relative overflow-hidden group">
-          <div className="absolute top-0 right-0 p-4 text-purple-400/10 group-hover:text-purple-400/20 transition-colors">
-            <BrainCircuit size={48} />
-          </div>
-          <div className="relative z-10">
-            <p className="text-purple-400 text-xs font-bold uppercase tracking-widest mb-3">
-              Veredicto del Analista
-            </p>
-            <p className="text-zinc-100 text-base italic leading-relaxed">
-              "{justify}"
-            </p>
-          </div>
-        </div>
-      )}
     </div>
   );
 }

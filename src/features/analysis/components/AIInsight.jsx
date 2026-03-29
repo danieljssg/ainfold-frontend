@@ -1,48 +1,24 @@
 "use client";
 
-import { RefreshCcw } from "lucide-react";
 import { BrainCircuit } from "lucide-react";
-import { FaPlay } from "react-icons/fa6";
-import { useState } from "react";
+import { ButtonTTS } from "./ButtonTTS";
 
 export default function AIInsight({ insight }) {
-  const [isPlaying, setIsPlaying] = useState(false);
-
   return (
-    <div className="bg-linear-to-br from-zinc-900 to-zinc-900/50 border border-primary/30 rounded-2xl p-8 relative overflow-hidden">
-      <div className="space-y-5">
-        <div className="flex items-start justify-between">
-          <div>
-            <p className="section-label mb-2">AI Insight</p>
-            <div className="w-32 h-1 bg-linear-to-r from-purple-400  to-transparent rounded-full" />
-          </div>
-          <div className="text-purple-400 text-xs font-semibold uppercase tracking-wider flex items-center gap-1">
-            <BrainCircuit className="w-3.5 h-3.5" />
-            AI
-          </div>
-        </div>
-
+    <div className="bg-linear-to-br from-purple-400/5 to-purple-400/15 border border-purple-400/10 rounded-2xl p-6 relative overflow-hidden group">
+      <div className="absolute top-0 right-0 p-4 text-purple-400/10 group-hover:text-purple-400/20 transition-colors flex items-center gap-2">
+        <p className="text-2xl">AI</p>
+        <BrainCircuit size={32} />
+      </div>
+      <div className="relative z-10">
+        <p className="section-label mb-2">AI Insight</p>
+        <div className="w-32 h-1 bg-linear-to-r from-purple-400  to-transparent rounded-full" />
         <p className="font-display text-lg text-zinc-100 leading-relaxed">
           {insight}
         </p>
-
-        <div className="pt-4 flex items-center gap-3">
-          <button
-            onClick={() => setIsPlaying(!isPlaying)}
-            className={`flex items-center gap-2 text-xs font-medium px-5 py-2.5 rounded-full transition-all ${
-              isPlaying
-                ? "bg-purple-400/20 text-purple-300 border border-purple-400/50"
-                : "text-zinc-400 border border-zinc-700 hover:border-purple-400/30 hover:text-purple-400"
-            }`}
-          >
-            <FaPlay />
-
-            {isPlaying ? "Reproduciendo..." : "Escuchar veredicto"}
-          </button>
-          <button className="flex items-center gap-2 text-xs text-zinc-600 hover:text-zinc-400 transition-colors">
-            <RefreshCcw className="w-4 h-4" />
-          </button>
-        </div>
+      </div>
+      <div className="pt-4 flex items-center gap-3">
+        <ButtonTTS />
       </div>
     </div>
   );

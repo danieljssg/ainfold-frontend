@@ -3,12 +3,12 @@ export default function SkillsMatrix({ skills }) {
   const softSkills = skills?.soft || [];
 
   return (
-    <div className="reveal reveal-4 bg-zinc-900 border border-zinc-800 rounded-2xl p-6 space-y-5">
+    <div className="p-6 flex flex-col gap-4">
       <p className="section-label">Matriz de habilidades</p>
 
       <div>
-        <p className="text-zinc-500 text-xs mb-3 flex items-center gap-2">
-          <span className="w-1.5 h-1.5 rounded-full bg-purple-400 inline-block"></span>
+        <p className="flex items-center gap-2 mb-3">
+          <span className="w-2 h-2 rounded-full bg-emerald-400 inline-block"></span>
           Técnicas
         </p>
         <div className="flex flex-wrap gap-2">
@@ -24,8 +24,8 @@ export default function SkillsMatrix({ skills }) {
       </div>
 
       <div>
-        <p className="text-zinc-500 text-xs mb-3 flex items-center gap-2">
-          <span className="w-1.5 h-1.5 rounded-full bg-zinc-400 inline-block"></span>
+        <p className="flex items-center gap-2 mb-3">
+          <span className="w-2 h-2 rounded-full bg-purple-400 inline-block"></span>
           Blandas
         </p>
         <div className="flex flex-wrap gap-2">

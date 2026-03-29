@@ -8,12 +8,11 @@ export const createServerApi = async () => {
   const csrfToken = cookieStore.get("x-csrf-token")?.value;
 
   const instance = axios.create({
-    baseURL: process.env.NEXT_PUBLIC_API_URL || "http://localhost:3100/api",
+    baseURL: process.env.NEXT_PUBLIC_API_URL || "http://localhost:4000/api",
     headers: {
       "Content-Type": "application/json",
       ...(sessionToken && { Authorization: `Bearer ${sessionToken}` }),
       ...(csrfToken && { "x-csrf-token": csrfToken }),
-      // Reenviar cookies al backend para que valide la sesión
       Cookie: [
         sessionToken && `session_token=${sessionToken}`,
         csrfToken && `x-csrf-token=${csrfToken}`,
@@ -28,7 +27,6 @@ export const createServerApi = async () => {
     (error) => {
       const status = error.response?.status;
       if (status === 401 || status === 403) {
-        // En Server Components el redirect sí funciona aquí
         redirect("/auth/login?session=expired");
       }
       return Promise.reject(error);

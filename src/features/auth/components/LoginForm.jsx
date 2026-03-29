@@ -16,20 +16,15 @@ import {
   CardDescription,
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import {
-  Field,
-  FieldGroup,
-  FieldLabel,
-  FieldDescription,
-} from "@/components/ui/field";
+import { Field, FieldGroup, FieldLabel } from "@/components/ui/field";
 
 export function LoginForm() {
   const { setUser, setIsAuthenticated } = useAuth();
   const searchParams = useSearchParams();
   const toastShown = useRef(false);
   const [formData, setFormData] = useState({
-    email: process.env.NEXT_PUBLIC_USERNAME || "",
-    password: process.env.NEXT_PUBLIC_USER_PASSWORD || "",
+    email: "",
+    password: "",
   });
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -56,6 +51,14 @@ export function LoginForm() {
 
   const handleGoogleLogin = () => {
     window.location.href = `${process.env.NEXT_PUBLIC_API_URL}/auth/google`;
+  };
+
+  const handleDemoUser = () => {
+    setFormData({
+      email: process.env.NEXT_PUBLIC_USERNAME || "",
+      password: process.env.NEXT_PUBLIC_USER_PASSWORD || "",
+    });
+    toast.info("Credenciales de demo cargadas");
   };
 
   const handleSubmit = async (e) => {
@@ -87,6 +90,15 @@ export function LoginForm() {
           </CardTitle>
           <CardDescription className="text-center text-muted-foreground">
             Ingresa tus credenciales para acceder a tu cuenta
+            <div className="text-center">
+              <button
+                type="button"
+                onClick={handleDemoUser}
+                className="text-base text-purple-400/80 hover:text-primary transition-colors"
+              >
+                Haz click para usar usuario de demo
+              </button>
+            </div>
           </CardDescription>
         </CardHeader>
 

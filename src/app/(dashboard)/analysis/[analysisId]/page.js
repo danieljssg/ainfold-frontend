@@ -5,10 +5,16 @@ import SkillsMatrix from "@/features/analysis/components/SkillsMatrix";
 import SummaryContent from "@/features/analysis/components/SummaryContent";
 import { getAnalysisById } from "@/features/analysis/services/analysisServices";
 import { BackButton } from "@/components/shared/BackButton";
+import { redirect } from "next/navigation";
+import { toast } from "sonner";
 
 export default async function AnalysisPage({ params }) {
   const { analysisId } = await params;
   const analysis = await getAnalysisById(analysisId);
+  if (!analysis) {
+    toast.error("Análisis no encontrado");
+    redirect("/dashboard");
+  }
   return (
     <section className="max-w-5xl mx-auto px-6 py-12 space-y-6">
       <div id="analysis">
@@ -19,13 +25,12 @@ export default async function AnalysisPage({ params }) {
 
         <div className="space-y-6">
           <CandidateHeader analysis={analysis} />
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 bg-zinc-900 border border-zinc-800 rounded-2xl p-6">
+            <SkillsMatrix skills={analysis?.summary?.skills || []} />
+            <RadarChart radarData={analysis?.radarStats || {}} />
+          </div>
           <AIInsight insight={analysis?.ai_insight || ""} />
           <SummaryContent summary={analysis?.summary || {}} />
-
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            <RadarChart radarData={analysis?.radarStats || {}} />
-            <SkillsMatrix skills={analysis?.summary?.skills || []} />
-          </div>
         </div>
       </div>
     </section>

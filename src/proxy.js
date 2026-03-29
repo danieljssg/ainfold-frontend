@@ -17,6 +17,22 @@ const isPublic = (pathname) =>
 export function proxy(request) {
   const { pathname } = request.nextUrl;
 
+  if (pathname === "/auth/login") {
+    const sessionToken = request.cookies.get("session_token")?.value;
+    const csrfToken = request.cookies.get("x-csrf-token")?.value;
+
+    if (sessionToken && csrfToken) {
+      try {
+        const payload = JSON.parse(atob(sessionToken.split(".")[1]));
+        if (payload.exp && Date.now() < payload.exp * 1000) {
+          return NextResponse.redirect(new URL("/dashboard", request.url));
+        }
+      } catch (e) {
+        // Ignorar error y dejar que cargue el login si el token es inválido
+      }
+    }
+  }
+
   if (isPublic(pathname)) return NextResponse.next();
 
   const sessionToken = request.cookies.get("session_token")?.value;
