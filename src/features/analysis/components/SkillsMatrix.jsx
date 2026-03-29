@@ -3,7 +3,7 @@ export default function SkillsMatrix({ skills }) {
   const softSkills = skills?.soft || [];
 
   return (
-    <div className="p-6 flex flex-col gap-4">
+    <div className="p-4 md:p-6 flex flex-col gap-4">
       <p className="section-label">Matriz de habilidades</p>
 
       <div>
@@ -15,7 +15,7 @@ export default function SkillsMatrix({ skills }) {
           {technicalSkills?.map((skill) => (
             <span
               key={skill}
-              className="text-xs bg-zinc-800 border border-zinc-700 text-zinc-300 px-3 py-1.5 rounded-lg"
+              className="text-[11px] md:text-xs bg-zinc-800 border border-zinc-700 text-zinc-300 px-2.5 md:px-3 py-1 md:py-1.5 rounded-lg wrap-break-word max-w-full text-center"
             >
               {skill}
             </span>
@@ -32,7 +32,7 @@ export default function SkillsMatrix({ skills }) {
           {softSkills?.map((skill) => (
             <span
               key={skill}
-              className="text-xs bg-zinc-800/50 border border-zinc-800 text-zinc-400 px-3 py-1.5 rounded-lg"
+              className="text-[11px] md:text-xs bg-zinc-800/50 border border-zinc-800 text-zinc-400 px-2.5 md:px-3 py-1 md:py-1.5 rounded-lg wrap-break-word max-w-full text-center"
             >
               {skill}
             </span>

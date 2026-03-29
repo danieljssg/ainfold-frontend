@@ -1,5 +1,6 @@
 "use client";
 
+import { useIsMobile } from "@/hooks/use-mobile";
 import {
   Radar,
   RadarChart as RechartsRadar,
@@ -26,9 +27,10 @@ export default function RadarChart({ radarData = {} }) {
   }));
 
   const dimensionsCount = chartData.length;
+  const isMobile = useIsMobile();
 
   return (
-    <div className="p-8 h-full flex flex-col w-full">
+    <div className="p-4 md:p-8 h-full flex flex-col w-full">
       <div className="flex items-center justify-between ">
         <div>
           <p className="section-label mb-1">Radar de competencias</p>
@@ -39,13 +41,13 @@ export default function RadarChart({ radarData = {} }) {
         </div>
       </div>
 
-      <div className="flex-1 min-h-75 w-full flex items-center justify-center">
+      <div className="flex-1 min-h-62.5 md:min-h-75 w-full flex items-center justify-center -mt-4 md:mt-0">
         <ResponsiveContainer width="100%" height="100%">
-          <RechartsRadar cx="50%" cy="50%" outerRadius="60%" data={chartData}>
+          <RechartsRadar cx="50%" cy="50%" outerRadius={isMobile ? "45%" : "60%"} data={chartData}>
             <PolarGrid stroke="#444444" />
             <PolarAngleAxis
               dataKey="subject"
-              tick={{ fill: "#a1a1aa", fontSize: 12, fontWeight: 500 }}
+              tick={{ fill: "#a1a1aa", fontSize: isMobile ? 10 : 12, fontWeight: 500 }}
             />
             <Radar
               name="Candidato"
@@ -59,7 +61,7 @@ export default function RadarChart({ radarData = {} }) {
         </ResponsiveContainer>
       </div>
 
-      <div className="grid grid-cols-2 lg:grid-cols-3 gap-2 mt-4 pt-4 border-t border-zinc-800/50">
+      <div className="grid grid-cols-2 md:grid-cols-3 gap-y-4 gap-x-2 mt-2 md:mt-4 pt-4 border-t border-zinc-800/50">
         {chartData.map((item) => (
           <div key={item.subject} className="flex flex-col">
             <span className="text-zinc-500 text-[10px] uppercase font-bold tracking-tighter">
