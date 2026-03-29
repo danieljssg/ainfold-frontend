@@ -39,20 +39,6 @@ export default function SkillsMatrix({ skills }) {
           ))}
         </div>
       </div>
-
-      <div className="border-t border-zinc-800 pt-4 space-y-3">
-        <div className="bg-zinc-800/30 border border-zinc-800/50 rounded-lg p-3">
-          <p className="text-purple-400 text-xs font-semibold mb-1">
-            💡 El hobby como brújula
-          </p>
-          <p className="text-zinc-500 text-xs leading-relaxed">
-            Su pasión por la fotografía callejera no es una anécdota. Revela una
-            mentalidad que busca patrones en el caos, que disfruta resolver
-            problemas visuales y que tiene ojo para detalles. Estas capacidades
-            se reflejan en su código.
-          </p>
-        </div>
-      </div>
     </div>
   );
 }

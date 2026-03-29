@@ -1,78 +1,35 @@
 import axios from "axios";
 import { getCookie, deleteCookie } from "cookies-next";
-import { redirect } from "next/navigation";
 
 const api = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_API_URL || "http://localhost:4000/api",
+  baseURL: process.env.NEXT_PUBLIC_API_URL || "http://localhost:3100/api",
   withCredentials: true,
-  headers: {
-    "Content-Type": "application/json",
-  },
-  xsrfCookieName: "x-csrf-token",
-  xsrfHeaderName: "x-csrf-token",
+  headers: { "Content-Type": "application/json" },
 });
 
-/**
- * INTERCEPTOR DE PETICIONES (Request)
- */
-api.interceptors.request.use(
-  (config) => {
-    // 1. Obtener el JWT de las cookies
-    const token = getCookie("session_token");
-    if (token) {
-      config.headers.Authorization = `Bearer ${token}`;
-    }
+api.interceptors.request.use((config) => {
+  const token = getCookie("session_token");
+  const csrfToken = getCookie("x-csrf-token");
 
-    // 2. Leer el CSRF token en cada petición (por si xsrf automático de Axios falla)
-    const csrfToken = getCookie("x-csrf-token");
-    if (csrfToken) {
-      config.headers["x-csrf-token"] = csrfToken;
-    }
+  if (token) config.headers.Authorization = `Bearer ${token}`;
+  if (csrfToken) config.headers["x-csrf-token"] = csrfToken;
 
-    // 3. Manejo de refresh=true si viene en la config
-    if (config.refresh) {
-      config.params = { ...config.params, refresh: "true" };
-    }
+  return config;
+});
 
-    return config;
-  },
-
-  (error) => {
-    return Promise.reject(error);
-  },
-);
-
-/**
- * INTERCEPTOR DE RESPUESTAS (Response)
- */
 api.interceptors.response.use(
-  (response) => response,
-  async (error) => {
-    const originalRequest = error.config;
-
-    const isAuthPage =
+  (res) => res,
+  (error) => {
+    const status = error.response?.status;
+    const isAuthRoute =
       typeof window !== "undefined" &&
-      (window.location.pathname.includes("/auth/login") ||
-        window.location.pathname.includes("/auth/google/callback"));
+      window.location.pathname.startsWith("/auth/");
 
-    if (
-      error.response?.status === 401 &&
-      !originalRequest._retry &&
-      !isAuthPage
-    ) {
-      originalRequest._retry = true;
-
-      deleteCookie("session_token");
-
-      if (typeof window !== "undefined") {
-        window.location.replace("/auth/login?session=expired");
-      }
-    }
-
-    if (error.response?.status === 403 && !isAuthPage) {
+    if ((status === 401 || status === 403) && !isAuthRoute) {
       deleteCookie("session_token");
       deleteCookie("x-csrf-token");
-      redirect("/auth/login?session=expired");
+      const reason = status === 401 ? "expired" : "invalid";
+      window.location.replace(`/auth/login?session=${reason}`);
     }
 
     return Promise.reject(error);

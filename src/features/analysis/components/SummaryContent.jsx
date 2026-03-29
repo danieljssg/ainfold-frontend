@@ -1,5 +1,6 @@
 "use client";
 
+import { BrainCircuit } from "lucide-react";
 import { FileText, Briefcase, GraduationCap, Quote } from "lucide-react";
 
 export default function SummaryContent({ summary = {} }) {
@@ -47,7 +48,7 @@ export default function SummaryContent({ summary = {} }) {
       {justify && (
         <div className="bg-purple-400/5 border border-purple-400/10 rounded-2xl p-6 relative overflow-hidden group">
           <div className="absolute top-0 right-0 p-4 text-purple-400/10 group-hover:text-purple-400/20 transition-colors">
-            <Quote size={48} />
+            <BrainCircuit size={48} />
           </div>
           <div className="relative z-10">
             <p className="text-purple-400 text-xs font-bold uppercase tracking-widest mb-3">

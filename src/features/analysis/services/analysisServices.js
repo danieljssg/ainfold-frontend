@@ -1,11 +1,13 @@
-import serverApi from "@/lib/api.server";
-
-export const getJobsAnalysis = async () => {
-  const response = await serverApi.get("/jobs");
-  return response.data.data;
-};
+import { createServerApi } from "@/lib/api.server";
 
 export const getAnalysisById = async (id) => {
-  const response = await serverApi.get(`/analyzes/${id}`);
-  return response.data.data;
+  const api = await createServerApi();
+  const { data } = await api.get(`/analyzes/${id}`);
+  return data.data;
+};
+
+export const getJobsAnalysis = async () => {
+  const api = await createServerApi();
+  const { data } = await api.get("/jobs");
+  return data.data;
 };

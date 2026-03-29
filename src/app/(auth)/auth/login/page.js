@@ -1,4 +1,5 @@
 "use client";
+import { Suspense } from "react";
 import { LoginForm } from "@/features/auth/components/LoginForm";
 
 export default function LoginPage() {
@@ -22,7 +23,15 @@ export default function LoginPage() {
             AI-Powered Analysis Hub
           </p>
         </div>
-        <LoginForm />
+        <Suspense
+          fallback={
+            <div className="animate-pulse text-sm text-zinc-500">
+              Cargando...
+            </div>
+          }
+        >
+          <LoginForm />
+        </Suspense>
       </div>
     </main>
   );
