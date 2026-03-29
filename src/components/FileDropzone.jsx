@@ -49,7 +49,9 @@ export default function FileDropzone({ onFileSelect, isSubmitting }) {
       onDragLeave={(e) => handleDrag(e, false)}
       onDragOver={(e) => handleDrag(e, true)}
       onDrop={handleDrop}
-      onClick={() => !isSubmitting && document.getElementById("cv-upload").click()}
+      onClick={() =>
+        !isSubmitting && document.getElementById("cv-upload").click()
+      }
     >
       <input
         id="cv-upload"
@@ -71,7 +73,9 @@ export default function FileDropzone({ onFileSelect, isSubmitting }) {
           >
             <svg
               className={`w-7 h-7 transition-colors ${
-                isDragActive ? "text-purple-400" : "text-zinc-500 group-hover:text-purple-400"
+                isDragActive
+                  ? "text-purple-400"
+                  : "text-zinc-500 group-hover:text-purple-400"
               }`}
               fill="none"
               stroke="currentColor"
@@ -86,15 +90,17 @@ export default function FileDropzone({ onFileSelect, isSubmitting }) {
             </svg>
           </div>
           <div className="text-center space-y-1">
-            <p className="text-zinc-300 text-sm font-semibold">Arrastra tu CV aquí</p>
+            <p className="text-zinc-300 text-sm font-semibold">
+              Arrastra tu CV aquí
+            </p>
             <p className="text-zinc-400 text-xs">o haz clic para seleccionar</p>
             <p className="text-zinc-500 text-xs">PDF · máx. 5MB</p>
           </div>
         </>
       ) : (
         <div className="w-full space-y-4 animate-in fade-in slide-in-from-bottom-4">
-          <div className="flex items-center gap-4 bg-gradient-to-r from-purple-400/10 to-zinc-900 border border-purple-400/20 rounded-xl p-4">
-            <div className="w-10 h-10 bg-purple-400/20 rounded-lg flex items-center justify-center flex-shrink-0">
+          <div className="flex items-center gap-4 bg-linear-to-r from-purple-400/10 to-zinc-900 border border-purple-400/20 rounded-xl p-4">
+            <div className="w-10 h-10 bg-purple-400/20 rounded-lg flex items-center justify-center shrink-0">
               <svg
                 className="w-5 h-5 text-purple-400"
                 fill="none"
@@ -110,7 +116,9 @@ export default function FileDropzone({ onFileSelect, isSubmitting }) {
               </svg>
             </div>
             <div className="flex-1 overflow-hidden">
-              <p className="text-zinc-300 text-sm font-semibold truncate">{file.name}</p>
+              <p className="text-zinc-300 text-sm font-semibold truncate">
+                {file.name}
+              </p>
               <p className="text-zinc-500 text-xs mt-1">
                 {(file.size / 1024 / 1024).toFixed(2)} MB · Listo para analizar
               </p>
@@ -123,7 +131,7 @@ export default function FileDropzone({ onFileSelect, isSubmitting }) {
                 onFileSelect(null);
               }}
               disabled={isSubmitting}
-              className="flex-shrink-0 text-zinc-500 hover:text-zinc-300 hover:bg-zinc-800/50 p-2 rounded-lg transition-colors disabled:opacity-30"
+              className="shrink-0 text-zinc-500 hover:text-zinc-300 hover:bg-zinc-800/50 p-2 rounded-lg transition-colors disabled:opacity-30"
             >
               <svg
                 className="w-5 h-5"
@@ -132,7 +140,11 @@ export default function FileDropzone({ onFileSelect, isSubmitting }) {
                 strokeWidth="1.5"
                 viewBox="0 0 24 24"
               >
-                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M6 18 18 6M6 6l12 12"
+                />
               </svg>
             </button>
           </div>

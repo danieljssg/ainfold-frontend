@@ -19,7 +19,6 @@ const TRANSLATIONS = {
 };
 
 export default function RadarChart({ radarData = {} }) {
-  // Transform object data to Recharts array format
   const chartData = Object.entries(radarData).map(([key, value]) => ({
     subject: TRANSLATIONS[key] || key,
     value: value,
@@ -43,11 +42,15 @@ export default function RadarChart({ radarData = {} }) {
 
       <div className="flex-1 min-h-62.5 md:min-h-75 w-full flex items-center justify-center -mt-4 md:mt-0">
         <ResponsiveContainer width="100%" height="100%">
-          <RechartsRadar cx="50%" cy="50%" outerRadius={isMobile ? "45%" : "60%"} data={chartData}>
+          <RechartsRadar cx="50%" cy="50%" outerRadius={"45%"} data={chartData}>
             <PolarGrid stroke="#444444" />
             <PolarAngleAxis
               dataKey="subject"
-              tick={{ fill: "#a1a1aa", fontSize: isMobile ? 10 : 12, fontWeight: 500 }}
+              tick={{
+                fill: "#a1a1aa",
+                fontSize: isMobile ? 10 : 12,
+                fontWeight: 500,
+              }}
             />
             <Radar
               name="Candidato"
