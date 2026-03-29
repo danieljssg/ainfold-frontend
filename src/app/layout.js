@@ -5,6 +5,7 @@ import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { ThemeProvider } from "@/providers/ThemeProvider";
 import Navigation from "@/components/layout/Navigation";
+import Footer from "@/components/layout/Footer";
 
 const fontSans = Outfit({
   subsets: ["latin"],
@@ -52,6 +53,7 @@ export default function RootLayout({ children }) {
             <TooltipProvider>
               <Navigation />
               {children}
+              <Footer />
             </TooltipProvider>
             <Toaster position="bottom-right" richColors />
           </AuthProvider>

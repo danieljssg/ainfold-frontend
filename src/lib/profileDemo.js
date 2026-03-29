@@ -13,7 +13,7 @@ export const profileDemo = {
   },
   occupation: "Analista de Datos / Programador",
   ai_insight:
-    "Como programador y aspirante a cineasta, Daniel no solo procesa datos, los dirige. Su pasión por el storytelling y la música es su power-up: transforma código frío en sinfonías visuales y dashboards narrativos. Un artista técnico imparable que coreografía la información para inspirar el futuro.",
+    "Daniel no solo es un desarrollador. Su pasión por el cine y la música le otorgan un power up brutal: el Data storytelling. Transforma consultas SQL y código frío en narrativas visuales envolventes, fusionando precisión técnica con el ritmo creativo de un pianista. Este perfil híbrido lo hace imparable: en el futuro, no solo estructurará sistemas complejos, sino que dirigirá la información estratégica empresarial. Sin dudas, un artista técnico imparable que coreografía la información para inspirar el futuro.",
   radarStats: {
     adaptability: 90,
     technicalPrecision: 94,
@@ -25,7 +25,7 @@ export const profileDemo = {
     profile:
       "Ingeniero Informático (T.S.U) con 4 años de experiencia en proyectos de transformación digital. Especialista en desarrollo web (Stack MERN, Next.js), bases de datos (SQL y NoSQL) e Inteligencia de Negocios. Destaca por su capacidad para integrar sistemas complejos, crear aplicaciones gamificadas y diseñar dashboards analíticos que impulsan la toma de decisiones estratégicas.",
     experience:
-      "• Desarrolló e implementó dashboards interactivos en Power BI para áreas de Finanzas, Planificación, Compras y Ventas, optimizando el análisis de datos comerciales.\n• Diseñó una API REST escalable (Node.js/Azure CosmosDB) para integrar PowerApps con el ERP SAP R3.\n• Creó una aplicación web gamificada (MERN) para auditorías de seguridad, incrementando la participación del equipo.\n• Lideró la digitalización de más de 15 flujos de trabajo, reduciendo el tiempo de procesamiento en un 70%.\n• Desarrolló un CRM interno utilizando NextJS y bases de datos NoSQL para automatizar el soporte técnico.",
+      "• Desarrolló e implementó dashboards interactivos en Power BI para áreas de Finanzas, Planificación, Compras y Ventas, optimizando el análisis de datos comerciales. • Diseñó una API REST escalable (Node.js/Azure CosmosDB) para integrar PowerApps con el ERP SAP R3.\n• Creó una aplicación web gamificada (MERN) para auditorías de seguridad, incrementando la participación del equipo.\n• Lideró la digitalización de más de 15 flujos de trabajo, reduciendo el tiempo de procesamiento en un 70%.\n• Desarrolló un CRM interno utilizando NextJS y bases de datos NoSQL para automatizar el soporte técnico.",
     education:
       "T.S.U Ing. Informática (Instituto Universitario Jesus Obrero - IUJO). Certificaciones: Microsoft Power Platform Fundamentals (PL-900), Diseño Web, JavaScript. Inglés Intermedio (B1).",
     skills: {
