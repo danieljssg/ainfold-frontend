@@ -54,6 +54,7 @@ export const AuthProvider = ({ children }) => {
         const { data } = await api.get("/auth/validate");
         if (data.success) {
           setUser(data.user);
+          await new Promise((resolve) => setTimeout(resolve, 50));
           setIsAuthenticated(true);
         } else {
           clearSession();

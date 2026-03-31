@@ -2,7 +2,7 @@
 
 import { useAuth } from "@/providers/AuthProvider";
 import { useState, useEffect, useRef } from "react";
-import { useSearchParams } from "next/navigation";
+import { useSearchParams, useRouter } from "next/navigation";
 import { toast } from "sonner";
 import api from "@/lib/api";
 import { setCookie } from "cookies-next";
@@ -19,6 +19,7 @@ import { Input } from "@/components/ui/input";
 import { Field, FieldGroup, FieldLabel } from "@/components/ui/field";
 
 export function LoginForm() {
+  const router = useRouter();
   const { setUser, setIsAuthenticated } = useAuth();
   const searchParams = useSearchParams();
   const toastShown = useRef(false);
@@ -69,10 +70,15 @@ export function LoginForm() {
       const { data } = await api.post("/auth/signin", formData);
 
       if (data.success) {
-        setCookie("session_token", data.token, { maxAge: 60 * 60 * 24 });
+        setCookie("session_token", data.token, {
+          maxAge: 60 * 60 * 24,
+          path: "/",
+          sameSite: "lax",
+        });
         setUser(data.user);
+        await new Promise((resolve) => setTimeout(resolve, 50));
         setIsAuthenticated(true);
-        window.location.href = "/dashboard";
+        router.push("/");
       }
     } catch (err) {
       setError(err.response?.data?.message || "Error al iniciar sesión");

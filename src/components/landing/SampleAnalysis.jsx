@@ -3,10 +3,10 @@ import DemoAudioButton from "./DemoAudioButton";
 import { BadgeCheck, Zap, Sparkles } from "lucide-react";
 
 const SAMPLE_DATA = {
-  adaptability: 85,
+  adaptability: 65,
   technicalPrecision: 70,
-  appliedCreativity: 95,
-  resilience: 80,
+  appliedCreativity: 80,
+  resilience: 50,
   impactCommunication: 90,
 };
 
@@ -61,7 +61,7 @@ export default function SampleAnalysis() {
                   ))}
                 </div>
 
-                <DemoAudioButton src="/audios/kokoro.mp3" />
+                <DemoAudioButton src="/audios/frifair.mp3" />
               </div>
             </div>
           </div>

@@ -35,9 +35,9 @@ export default function RadarChart({ radarData = {} }) {
           <p className="section-label mb-1">Radar de competencias</p>
           <div className="w-12 h-1 bg-purple-400/30 rounded-full" />
         </div>
-        <div className="text-[10px] uppercase font-bold tracking-wider bg-purple-400/10 text-purple-400 border border-purple-400/20 px-3 py-1 rounded-full">
+        {/* <div className="text-[10px] uppercase font-bold tracking-wider bg-purple-400/10 text-purple-400 border border-purple-400/20 px-3 py-1 rounded-full">
           {dimensionsCount} dimensiones
-        </div>
+        </div> */}
       </div>
 
       <div className="flex-1 min-h-62.5 md:min-h-75 w-full flex items-center justify-center -mt-4 md:mt-0">

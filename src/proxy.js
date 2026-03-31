@@ -1,4 +1,6 @@
 import { NextResponse } from "next/server";
+import { jwtVerify, decodeJwt } from "jose";
+const secret = new TextEncoder().encode(process.env.JWT_SECRET);
 
 const PUBLIC_ROUTES = [
   "/",
@@ -24,11 +26,10 @@ export function proxy(request) {
 
     if (sessionToken && csrfToken) {
       try {
-        const payload = JSON.parse(atob(sessionToken.split(".")[1]));
+        const payload = decodeJwt(sessionToken);
         const isValid = payload.exp && Date.now() < payload.exp * 1000;
 
         if (isValid) {
-          // Solo para /auth/login: no redirigir si hay un error de sesión explícito
           if (pathname === "/auth/login") {
             const sessionError = request.nextUrl.searchParams.get("session");
             if (sessionError) return NextResponse.next();

@@ -29,7 +29,7 @@ function GoogleCallbackContent() {
           if (data.success) {
             setUser(data.user);
             setIsAuthenticated(true);
-
+            await new Promise((resolve) => setTimeout(resolve, 50));
             router.push("/");
           }
         } catch (error) {
