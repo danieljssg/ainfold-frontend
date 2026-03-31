@@ -40,7 +40,7 @@ export function LoginForm() {
     };
     getCsrf();
 
-    // Mostrar toast si el token expiró
+
     const sessionStatus = searchParams.get("session");
     if (sessionStatus === "expired" && !toastShown.current) {
       toast.error("Tu sesión ha expirado", {
@@ -74,6 +74,7 @@ export function LoginForm() {
           maxAge: 60 * 60 * 24,
           path: "/",
           sameSite: "lax",
+          domain: process.env.NODE_ENV === "production" ? ".spotzlabs.site" : undefined,
         });
         setUser(data.user);
         await new Promise((resolve) => setTimeout(resolve, 50));
