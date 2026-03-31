@@ -11,7 +11,7 @@ export default async function AnalysisPage({ params }) {
   const analysis = await getAnalysisById(analysisId);
 
   return (
-    <section className="w-full flex flex-col gap-4">
+    <section className="w-full flex flex-col gap-4 min-h-screen pb-20">
       <div id="analysis">
         <div className="flex items-center gap-4 mb-6">
           <BackButton />
@@ -20,7 +20,7 @@ export default async function AnalysisPage({ params }) {
 
         <div className="space-y-6">
           <CandidateHeader analysis={analysis} />
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 bg-zinc-900 border border-zinc-800 rounded-2xl p-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 bg-zinc-900 border border-zinc-800 rounded-2xl p-6 md:p-8">
             <SkillsMatrix skills={analysis?.summary?.skills || []} />
             <RadarChart radarData={analysis?.radarStats || {}} />
           </div>

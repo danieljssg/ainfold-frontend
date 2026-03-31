@@ -4,8 +4,8 @@ import { useState, useRef, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import api from "@/lib/api";
 import { toast } from "sonner";
-import FormFields from "@/components/FormFields";
-import FileDropzone from "@/components/FileDropzone";
+import FormFields from "@/features/analysis/components/FormFields";
+import FileDropzone from "@/features/analysis/components/FileDropzone";
 import AnalysisProgress from "@/components/AnalysisProgress";
 import {
   Dialog,

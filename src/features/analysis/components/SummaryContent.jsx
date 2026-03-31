@@ -37,7 +37,7 @@ export default function SummaryContent({ summary = {} }) {
         {sections.map((section) => (
           <div
             key={section.title}
-            className="bg-zinc-900 border border-zinc-800 rounded-2xl p-6 hover:border-zinc-700 transition-colors"
+            className="bg-zinc-900 border border-zinc-800 rounded-2xl p-6 md:p-8 hover:border-zinc-700 transition-colors"
           >
             <div className="flex items-center gap-2 mb-4 text-purple-200">
               {section.icon}

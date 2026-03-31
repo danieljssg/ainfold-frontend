@@ -52,6 +52,18 @@ Toda la plataforma vive en una sola instancia **GP.Micro (2 vCPU / 4 GB RAM)** d
 - **Persistencia Visual:** Volúmenes bindeados en la VM para compartir archivos de audio entre el Worker de IA y el servidor de archivos estáticos del Frontend.
 - **Optimización de RAM:** Uso estratégico de 4GB de SWAP para absorber picos de procesamiento del modelo TTS.
 
+
+Distribución de recursos en la instancia GP.Micro (2 vCPU / 4 GB RAM):
+| Servicio | vCPU | RAM |
+| :--- | :--- | :--- |
+| frontend (Next.js) | 0.75 vCPU | 768 MB |
+| api (Express) | 0.5 vCPU | 512 MB |
+| worker (BullMQ + IA) | 1 vCPU | 1 GB |
+| kokoro-tts | 1 vCPU | 2 GB |
+| MongoDB | 0.25 vCPU | 512 MB |
+| Valkey/Redis | 0.15 vCPU | 256 MB |
+| worker-monitor | 0.15 vCPU | 128 MB |
+
 ---
 
 ## 🛠️ Instalación y Configuración

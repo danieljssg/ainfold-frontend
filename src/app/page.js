@@ -1,7 +1,10 @@
-import Hero from "@/components/landing/Hero";
-import TheHook from "@/components/landing/TheHook";
-import SampleAnalysis from "@/components/landing/SampleAnalysis";
-import TechStack from "@/components/landing/TechStack";
+import Hero from "@/features/landing/Hero";
+import TheHook from "@/features/landing/TheHook";
+import SampleAnalysis from "@/features/landing/SampleAnalysis";
+import TechStack from "@/features/landing/TechStack";
+import YoutubeVideo from "@/features/landing/YoutubeVideo";
+import Link from "next/link";
+import { Rocket } from "lucide-react";
 
 export const metadata = {
   title: "AI'nFold — Arte, Código y Latencia",
@@ -14,6 +17,7 @@ export default function Home() {
     <main className="min-h-screen overflow-x-hidden selection:bg-purple-500/30 selection:text-purple-200">
       <Hero />
       <TheHook />
+      {/* <YoutubeVideo /> */}
       <SampleAnalysis />
       <TechStack />
 
@@ -30,12 +34,13 @@ export default function Home() {
             humanos marcan la diferencia.
           </p>
           <div className="pt-8">
-            <a
+            <Link
               href="/analysis/create"
-              className="inline-flex items-center px-10 py-5 rounded-4xl bg-zinc-100 text-black font-bold hover:bg-purple-400 hover:text-purple-950 transition-all active:scale-[0.98] shadow-2xl"
+              className="group inline-flex items-center px-10 py-5 rounded-full bg-zinc-100 text-black font-bold hover:bg-purple-400 hover:text-purple-950 transition-all active:scale-[0.98] shadow-2xl shadow-purple-500/20 justify-center gap-2"
             >
-              Iniciar análisis
-            </a>
+              <Rocket className="w-5 h-5 group-hover:animate-jump" />
+              Iniciar Análisis
+            </Link>
           </div>
         </div>
       </section>

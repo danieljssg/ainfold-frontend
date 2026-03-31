@@ -8,8 +8,7 @@ export default function CandidateHeader({ analysis }) {
   };
 
   return (
-    <div className="animate-fade-in-up duration-700 bg-zinc-900 border border-zinc-800 rounded-2xl p-8 relative overflow-hidden">
-      {/* linear accent */}
+    <div className="animate-fade-in-up duration-700 bg-zinc-900 border border-zinc-800 rounded-2xl p-6 md:p-8 relative overflow-hidden">
       <div className="absolute top-0 right-0 w-64 h-64 bg-linear-to-bl from-purple-400/10 to-transparent rounded-full blur-3xl pointer-events-none"></div>
 
       <div className="flex flex-col md:flex-row items-start justify-between flex-wrap gap-6 relative z-10 w-full">
@@ -44,7 +43,7 @@ export default function CandidateHeader({ analysis }) {
             <p className="font-display text-5xl md:text-6xl text-transparent bg-clip-text bg-linear-to-r from-purple-400 to-purple-300">
               {scoreDisplay.integerPart}
               <span className="text-xl md:text-2xl">
-                .{scoreDisplay.decimalPart}
+                {scoreDisplay.decimalPart}
               </span>
             </p>
             <div className="h-1 w-24 bg-linear-to-r from-purple-400 to-purple-300 rounded-full md:ml-auto"></div>

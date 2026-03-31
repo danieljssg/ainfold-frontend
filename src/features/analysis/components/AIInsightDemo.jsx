@@ -52,7 +52,7 @@ export default function AIInsightDemo({ insight }) {
   ];
 
   return (
-    <div className="animate-fade-in duration-500 bg-linear-to-br from-purple-400/5 to-purple-400/15 border border-purple-400/10 rounded-2xl p-6 relative overflow-hidden group">
+    <div className="animate-fade-in duration-500 bg-linear-to-br from-purple-400/5 to-purple-400/15 border border-purple-400/10 rounded-2xl p-6 md:p-8 relative overflow-hidden group">
       <div className="absolute top-0 right-0 p-4 text-purple-400/10 group-hover:text-purple-400/20 transition-colors flex items-center gap-2">
         <p className="text-xl">Powered by AI</p>
         <BrainCircuit size={32} />

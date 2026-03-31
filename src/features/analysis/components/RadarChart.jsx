@@ -29,7 +29,7 @@ export default function RadarChart({ radarData = {} }) {
   const isMobile = useIsMobile();
 
   return (
-    <div className="p-4 md:p-8 h-full flex flex-col w-full">
+    <div className="h-full flex flex-col w-full">
       <div className="flex items-center justify-between ">
         <div>
           <p className="section-label mb-1">Radar de competencias</p>
@@ -40,8 +40,8 @@ export default function RadarChart({ radarData = {} }) {
         </div> */}
       </div>
 
-      <div className="flex-1 min-h-62.5 md:min-h-75 w-full flex items-center justify-center -mt-4 md:mt-0">
-        <ResponsiveContainer width="100%" height="100%">
+      <div className="flex-1 min-h-62.5 md:min-h-75 w-full flex items-center justify-center mt-6 mb-2">
+        <ResponsiveContainer width="100%" height="100%" minWidth={0} minHeight={0}>
           <RechartsRadar cx="50%" cy="50%" outerRadius={"45%"} data={chartData}>
             <PolarGrid stroke="#444444" />
             <PolarAngleAxis

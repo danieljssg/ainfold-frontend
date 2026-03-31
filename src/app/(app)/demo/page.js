@@ -24,7 +24,7 @@ export default function DemoPage() {
 
           <div className="space-y-6">
             <CandidateHeader analysis={analysis} />
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 bg-zinc-900 border border-zinc-800 rounded-2xl p-6 timeline-view animate-slide-in-left animate-range-[entry_5%_contain_20%]">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 bg-zinc-900 border border-zinc-800 rounded-2xl p-6 md:p-8 timeline-view animate-slide-in-left animate-range-[entry_5%_contain_20%]">
               <SkillsMatrix skills={analysis?.summary?.skills || []} />
               <RadarChart radarData={analysis?.radarStats || {}} />
             </div>
