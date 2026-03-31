@@ -18,12 +18,13 @@ export const AuthProvider = ({ children }) => {
 
   const sessionChecked = useRef(false);
 
-  const clearSession = () => {
-    deleteCookie("session_token");
-    deleteCookie("x-csrf-token");
-    setUser(null);
-    setIsAuthenticated(false);
-  };
+const clearSession = () => {
+  const domain = process.env.NODE_ENV === 'production' ? '.spotzlabs.site' : undefined;
+  deleteCookie("session_token", { path: "/", domain });
+  deleteCookie("x-csrf-token", { path: "/", domain });
+  setUser(null);
+  setIsAuthenticated(false);
+};
 
   const logout = async () => {
     try {
