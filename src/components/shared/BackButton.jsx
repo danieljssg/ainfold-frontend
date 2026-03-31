@@ -3,12 +3,12 @@ import { ArrowLeft } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { Button } from "../ui/button";
 
-export const BackButton = () => {
+export const BackButton = ({ href }) => {
   const router = useRouter();
 
   return (
     <Button
-      onClick={() => router.back()}
+      onClick={() => href ? router.push(href) : router.back()}
       variant="ghost"
       className="w-fit border border-primary/20 hover:bg-primary/60 hover:text-purple-400"
     >

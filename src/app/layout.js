@@ -28,7 +28,12 @@ const fontMono = Geist_Mono({
 export const metadata = {
   title: "AI'nFold — AI Profile unfold Analysis",
   description: "Análisis inteligente de perfiles profesionales",
-};
+  icons: {
+    icon: '/favicon.png',
+    shortcut: '/ainfold_icon.png',
+    apple: '/apple-touch-icon.png',
+  }
+}
 
 export const viewport = {
   themeColor: "#ffece9",

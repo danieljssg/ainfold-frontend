@@ -3,7 +3,6 @@ import RadarChart from "@/features/analysis/components/RadarChart";
 import SkillsMatrix from "@/features/analysis/components/SkillsMatrix";
 import SummaryContent from "@/features/analysis/components/SummaryContent";
 import AIInsightDemo from "@/features/analysis/components/AIInsightDemo";
-import { BackButton } from "@/components/shared/BackButton";
 import { profileDemo } from "@/lib/profileDemo";
 
 export const metadata = {

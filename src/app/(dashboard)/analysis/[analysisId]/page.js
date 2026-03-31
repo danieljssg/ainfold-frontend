@@ -14,7 +14,7 @@ export default async function AnalysisPage({ params }) {
     <section className="w-full flex flex-col gap-4 min-h-screen pb-20">
       <div id="analysis">
         <div className="flex items-center gap-4 mb-6">
-          <BackButton />
+          <BackButton href="/dashboard" />
           <p className="section-label">Resultado del análisis</p>
         </div>
 
