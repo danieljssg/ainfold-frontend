@@ -1,10 +1,12 @@
+"use client";
 import { useState, useEffect } from "react";
 
 export default function AnalysisProgress({ job }) {
   const targetStatus = job?.status || "pending";
-  const targetProgress = typeof job?.progress === "object" 
-    ? job?.progress?.percentage 
-    : (job?.progress || 0);
+  const targetProgress =
+    typeof job?.progress === "object"
+      ? job?.progress?.percentage
+      : job?.progress || 0;
 
   const [visualProgress, setVisualProgress] = useState(0);
 
@@ -12,15 +14,20 @@ export default function AnalysisProgress({ job }) {
   useEffect(() => {
     if (visualProgress < targetProgress) {
       const timer = setTimeout(() => {
-        setVisualProgress(prev => Math.min(prev + 25, targetProgress));
+        setVisualProgress((prev) => Math.min(prev + 25, targetProgress));
       }, 600);
       return () => clearTimeout(timer);
     }
   }, [visualProgress, targetProgress]);
 
   // UI State based on what the user is currently seeing (visualProgress)
-  const isCompletedVisually = visualProgress === 100 && targetStatus === "completed";
-  const displayStatus = isCompletedVisually ? "completed" : (visualProgress > 0 ? "processing" : "pending");
+  const isCompletedVisually =
+    visualProgress === 100 && targetStatus === "completed";
+  const displayStatus = isCompletedVisually
+    ? "completed"
+    : visualProgress > 0
+      ? "processing"
+      : "pending";
 
   const steps = [
     {
@@ -31,17 +38,26 @@ export default function AnalysisProgress({ job }) {
     {
       label: "Texto extraído del PDF",
       completed: visualProgress >= 50 || displayStatus === "completed",
-      active: visualProgress >= 25 && visualProgress < 50 && displayStatus !== "completed",
+      active:
+        visualProgress >= 25 &&
+        visualProgress < 50 &&
+        displayStatus !== "completed",
     },
     {
       label: "Generando análisis con IA",
       completed: visualProgress >= 75 || displayStatus === "completed",
-      active: visualProgress >= 50 && visualProgress < 75 && displayStatus !== "completed",
+      active:
+        visualProgress >= 50 &&
+        visualProgress < 75 &&
+        displayStatus !== "completed",
     },
     {
       label: "Guardando resultados",
       completed: displayStatus === "completed",
-      active: visualProgress >= 75 && visualProgress < 100 && displayStatus !== "completed",
+      active:
+        visualProgress >= 75 &&
+        visualProgress < 100 &&
+        displayStatus !== "completed",
     },
   ];
 
@@ -50,7 +66,9 @@ export default function AnalysisProgress({ job }) {
       <div className="relative z-10 space-y-8">
         <div className="text-center space-y-2">
           <p className="font-display text-3xl bg-linear-to-r from-purple-300 to-purple-400 bg-clip-text text-transparent">
-            {displayStatus === "completed" ? "¡Análisis listo!" : "Analizando..."}
+            {displayStatus === "completed"
+              ? "¡Análisis listo!"
+              : "Analizando..."}
           </p>
           <p className="text-zinc-400 text-sm">
             {displayStatus === "completed"
@@ -65,7 +83,11 @@ export default function AnalysisProgress({ job }) {
             <div
               key={idx}
               className={`flex items-center gap-3 px-3 py-2 rounded-lg transition-colors ${
-                step.completed ? "bg-emerald-500/10" : step.active ? "bg-purple-400/10" : ""
+                step.completed
+                  ? "bg-emerald-500/10"
+                  : step.active
+                    ? "bg-purple-400/10"
+                    : ""
               }`}
             >
               {step.completed ? (
@@ -77,7 +99,11 @@ export default function AnalysisProgress({ job }) {
                     strokeWidth="3"
                     viewBox="0 0 24 24"
                   >
-                    <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 12.75 6 6 9-13.5" />
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="m4.5 12.75 6 6 9-13.5"
+                    />
                   </svg>
                 </div>
               ) : step.active ? (
@@ -89,7 +115,11 @@ export default function AnalysisProgress({ job }) {
               )}
               <span
                 className={`text-sm font-medium ${
-                  step.active ? "text-purple-300" : step.completed ? "text-emerald-400" : "text-zinc-500"
+                  step.active
+                    ? "text-purple-300"
+                    : step.completed
+                      ? "text-emerald-400"
+                      : "text-zinc-500"
                 }`}
               >
                 {step.label}
