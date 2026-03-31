@@ -7,7 +7,7 @@ import Link from "next/link";
 import { Rocket } from "lucide-react";
 
 export const metadata = {
-  title: "AI'nFold — Arte, Código y Latencia",
+  title: "AI'nFold — Inteligencia Aplicada para la Gestión Humana",
   description:
     "Análisis inteligente de perfiles y habilidades transferibles mediante IA y storytelling sonoro.",
 };

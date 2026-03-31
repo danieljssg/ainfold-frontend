@@ -30,14 +30,14 @@ function GoogleCallbackContent() {
             setUser(data.user);
             setIsAuthenticated(true);
             await new Promise((resolve) => setTimeout(resolve, 50));
-            router.push("/");
+            window.location.href = "/dashboard";
           }
         } catch (error) {
           console.error(
             "Error en validación:",
             error.response?.data || error.message,
           );
-          router.push("/auth/login?error=sync_failed");
+          window.location.href = "/auth/login?error=sync_failed";
         }
       };
 

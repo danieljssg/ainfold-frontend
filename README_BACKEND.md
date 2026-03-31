@@ -1,6 +1,6 @@
 # 🎙️ Spotz Analysis: AI'nFold
 
-## _Arte, Código y Latencia — Transformando datos en narrativa sonora_
+## _Inteligencia Aplicada para la Gestión Humana — Transformando datos en historias._
 
 AI'nFold es una plataforma que recibe datos de candidatos, los procesa mediante IA y genera un análisis completo, y mediante generación de audio, narra la relación entre sus hobbies y su perfil profesional: **Habilidades Transferibles**.
 

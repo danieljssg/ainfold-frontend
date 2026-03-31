@@ -79,7 +79,7 @@ export function LoginForm() {
         setUser(data.user);
         await new Promise((resolve) => setTimeout(resolve, 50));
         setIsAuthenticated(true);
-        router.push("/dashboard");
+        window.location.href = "/dashboard";
       }
     } catch (err) {
       setError(err.response?.data?.message || "Error al iniciar sesión");

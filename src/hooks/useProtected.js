@@ -9,7 +9,7 @@ export const useProtected = () => {
 
   useEffect(() => {
     if (!loading && !isAuthenticated) {
-      router.push("/auth/login");
+      window.location.href = "/auth/login";
     }
   }, [loading, isAuthenticated, router]);
 

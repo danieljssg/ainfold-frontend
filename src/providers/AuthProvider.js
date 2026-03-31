@@ -31,7 +31,7 @@ const clearSession = () => {
       await api.post("/auth/logout");
     } finally {
       clearSession();
-      router.push("/auth/login");
+      window.location.href = "/auth/login";
     }
   };
 

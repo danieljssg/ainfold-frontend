@@ -22,7 +22,7 @@ export default function TheHook() {
               </p>
               <footer className="text-zinc-500 text-sm font-medium tracking-wide border-l-2 border-purple-500 pl-6 space-y-1">
                 <p className="text-zinc-300">Daniel Saud</p>
-                <p>Fundador de AI&apos;nFold</p>
+                <p>AI&apos;nFold</p>
               </footer>
             </blockquote>
           </div>

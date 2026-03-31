@@ -4,7 +4,7 @@ import { LoginForm } from "@/features/auth/components/LoginForm";
 
 export default function LoginPage() {
   return (
-    <main className="relative min-h-screen w-full flex items-center justify-center overflow-hidden bg-linear-to-b from-primary/10 to-black">
+    <main className="relative min-h-screen w-full flex items-center justify-center overflow-hidden bg-linear-to-b from-primary/10 to-black py-15">
       <div className="absolute top-0 left-0 w-full h-full -z-10 bg-radial-at-tr from-primary/10 via-transparent to-transparent pointer-events-none" />
       <div className="absolute bottom-0 right-0 w-full h-full -z-10 bg-radial-at-bl from-accent/10 via-transparent to-transparent pointer-events-none" />
 

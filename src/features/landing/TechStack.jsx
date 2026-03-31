@@ -78,7 +78,7 @@ export default function TechStack() {
           <ShieldCheck className="absolute top-8 right-8 w-24 h-24 text-purple-500/5 -rotate-12" />
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-8">
-              <h3 className="text-3xl font-display text-zinc-100 italic">
+              <h3 className="text-2xl sm:text-3xl font-display text-zinc-100 italic text-balance">
                 El corazón de la infraestructura
               </h3>
               <p className="text-zinc-400 leading-relaxed max-w-lg">
@@ -101,9 +101,9 @@ export default function TechStack() {
               </div>
             </div>
 
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {[
-                { label: "Uptime", val: "99.9%" },
+                { label: "Uptime", val: "99.3%" },
                 { label: "Latency", val: "~45ms" },
                 { label: "Data TTL", val: "1 Hour" },
                 { label: "TTS Concurrency", val: "Queue: 1" },
@@ -122,7 +122,7 @@ export default function TechStack() {
               ))}
             </div>
 
-            <div className="mt-8 col-span-1 lg:col-span-2 overflow-hidden rounded-2xl border border-zinc-800 bg-zinc-950/50">
+            {/* <div className="mt-8 col-span-1 lg:col-span-2 overflow-hidden rounded-2xl border border-zinc-800 bg-zinc-950/50">
               <div className="overflow-x-auto">
                 <table className="w-full text-left text-xs md:text-sm text-zinc-400">
                   <thead className="bg-zinc-900 border-b border-zinc-800 text-zinc-300 font-display">
@@ -166,7 +166,7 @@ export default function TechStack() {
                   </tbody>
                 </table>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
