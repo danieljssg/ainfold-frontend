@@ -1,30 +1,47 @@
+import { useState, useEffect } from "react";
+
 export default function AnalysisProgress({ job }) {
-  const status = job?.status || "pending";
-  // Si progress es un objeto { percentage, step }, sacamos el porcentaje
-  const progress = typeof job?.progress === "object" 
+  const targetStatus = job?.status || "pending";
+  const targetProgress = typeof job?.progress === "object" 
     ? job?.progress?.percentage 
     : (job?.progress || 0);
+
+  const [visualProgress, setVisualProgress] = useState(0);
+
+  // Catch up logic
+  useEffect(() => {
+    if (visualProgress < targetProgress) {
+      const timer = setTimeout(() => {
+        setVisualProgress(prev => Math.min(prev + 25, targetProgress));
+      }, 600);
+      return () => clearTimeout(timer);
+    }
+  }, [visualProgress, targetProgress]);
+
+  // UI State based on what the user is currently seeing (visualProgress)
+  const isCompletedVisually = visualProgress === 100 && targetStatus === "completed";
+  const displayStatus = isCompletedVisually ? "completed" : (visualProgress > 0 ? "processing" : "pending");
 
   const steps = [
     {
       label: "Documento recibido",
-      completed: ["processing", "completed"].includes(status) || progress >= 25,
-      active: status === "pending" || (status === "processing" && progress < 25),
+      completed: visualProgress >= 25 || displayStatus === "completed",
+      active: visualProgress < 25 && displayStatus !== "completed",
     },
     {
       label: "Texto extraído del PDF",
-      completed: progress >= 50 || status === "completed",
-      active: status === "processing" && progress >= 25 && progress < 50,
+      completed: visualProgress >= 50 || displayStatus === "completed",
+      active: visualProgress >= 25 && visualProgress < 50 && displayStatus !== "completed",
     },
     {
       label: "Generando análisis con IA",
-      completed: progress >= 75 || status === "completed",
-      active: status === "processing" && progress >= 50 && progress < 75,
+      completed: visualProgress >= 75 || displayStatus === "completed",
+      active: visualProgress >= 50 && visualProgress < 75 && displayStatus !== "completed",
     },
     {
       label: "Guardando resultados",
-      completed: status === "completed",
-      active: status === "processing" && progress >= 75 && progress < 100,
+      completed: displayStatus === "completed",
+      active: visualProgress >= 75 && visualProgress < 100 && displayStatus !== "completed",
     },
   ];
 
@@ -33,10 +50,10 @@ export default function AnalysisProgress({ job }) {
       <div className="relative z-10 space-y-8">
         <div className="text-center space-y-2">
           <p className="font-display text-3xl bg-linear-to-r from-purple-300 to-purple-400 bg-clip-text text-transparent">
-            {status === "completed" ? "¡Análisis listo!" : "Analizando..."}
+            {displayStatus === "completed" ? "¡Análisis listo!" : "Analizando..."}
           </p>
           <p className="text-zinc-400 text-sm">
-            {status === "completed"
+            {displayStatus === "completed"
               ? "Hemos terminado de procesar tu CV"
               : "La IA está procesando tu perfil profesional"}
           </p>
@@ -85,12 +102,12 @@ export default function AnalysisProgress({ job }) {
         <div className="space-y-3 pt-4 border-t border-zinc-800">
           <div className="flex justify-between items-center text-xs font-bold uppercase tracking-wider">
             <span className="text-zinc-500">Progreso</span>
-            <span className="text-purple-400">{progress}%</span>
+            <span className="text-purple-400">{visualProgress}%</span>
           </div>
           <div className="h-2 bg-zinc-800 rounded-full overflow-hidden">
             <div
               className="h-full bg-linear-to-r from-purple-500 via-purple-400 to-purple-300 rounded-full transition-all duration-500"
-              style={{ width: `${progress}%` }}
+              style={{ width: `${visualProgress}%` }}
             ></div>
           </div>
         </div>

@@ -74,7 +74,7 @@ export default function TechStack() {
           ))}
         </div>
 
-        <div className="bg-linear-to-br from-purple-500/10 to-transparent border border-purple-500/10 rounded-[2.5rem] p-8 md:p-12 overflow-hidden relative timeline-view animate-zoom-in animate-range-cover">
+        <div className="bg-linear-to-br from-purple-500/10 to-transparent border border-purple-500/10 rounded-[2.5rem] p-8 md:p-12 overflow-hidden relative timeline-view animate-zoom-in animate-range-[entry_10%_contain_30%]">
           <ShieldCheck className="absolute top-8 right-8 w-24 h-24 text-purple-500/5 -rotate-12" />
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-8">

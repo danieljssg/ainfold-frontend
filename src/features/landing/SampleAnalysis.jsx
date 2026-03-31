@@ -30,7 +30,7 @@ export default function SampleAnalysis() {
           {/* Visual Analysis Mockup */}
           <div className="animate-zoom-in duration-500 lg:col-span-7 bg-zinc-900/40 border border-zinc-800/50 rounded-[2.5rem] p-8 md:p-12 backdrop-blur-xl shadow-2xl">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 h-full">
-              <div className="h-87.5 md:h-full">
+              <div className="w-full min-h-100 h-full">
                 <RadarChartWrap data={SAMPLE_DATA} />
               </div>
               <div className="space-y-8 flex flex-col justify-center">
