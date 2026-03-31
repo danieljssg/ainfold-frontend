@@ -8,7 +8,7 @@ export default function CandidateHeader({ analysis }) {
   };
 
   return (
-    <div className="reveal reveal-1 bg-zinc-900 border border-zinc-800 rounded-2xl p-8 relative overflow-hidden">
+    <div className="animate-fade-in-up duration-700 bg-zinc-900 border border-zinc-800 rounded-2xl p-8 relative overflow-hidden">
       {/* linear accent */}
       <div className="absolute top-0 right-0 w-64 h-64 bg-linear-to-bl from-purple-400/10 to-transparent rounded-full blur-3xl pointer-events-none"></div>
 

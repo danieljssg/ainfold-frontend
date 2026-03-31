@@ -24,7 +24,7 @@ El frontend está diseñado para ser visualmente aceptable y poder manejar estad
 
 ### 🛠️ Stack Tecnológico
 
-- **Framework:** Next.js 16+ (App Router).
+- **Framework:** Next.js (App Router).
 - **Estilos:** Tailwind CSS v4.
 <!-- - **Animaciones:** Framer Motion para transiciones suaves y estados de carga. -->
 - **Gráficos:** Recharts para la visualización de "Radar de Habilidades".

@@ -2,7 +2,7 @@ import { FaGithub, FaLinkedin, FaEnvelope } from "react-icons/fa6";
 
 export default function Footer() {
   return (
-    <footer className="w-full mt-30 py-8 border-t border-zinc-accent backdrop-blur-lg hover:bg-purple-950/15 transition-all ease-in-out duration-300">
+    <footer className="w-full py-8 border-t border-zinc-accent backdrop-blur-lg hover:bg-purple-950/15 transition-all ease-in-out duration-300">
       <div className="container mx-auto px-6">
         <div className="text-center mb-6">
           <p className="text-[10px] text-zinc-400 font-medium tracking-[0.2em] opacity-70">

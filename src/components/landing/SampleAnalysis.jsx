@@ -28,7 +28,7 @@ export default function SampleAnalysis() {
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           {/* Visual Analysis Mockup */}
-          <div className="lg:col-span-7 bg-zinc-900/40 border border-zinc-800/50 rounded-[2.5rem] p-8 md:p-12 backdrop-blur-xl shadow-2xl">
+          <div className="animate-zoom-in duration-500 lg:col-span-7 bg-zinc-900/40 border border-zinc-800/50 rounded-[2.5rem] p-8 md:p-12 backdrop-blur-xl shadow-2xl">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 h-full">
               <div className="h-87.5 md:h-full">
                 <RadarChartWrap data={SAMPLE_DATA} />
@@ -68,7 +68,10 @@ export default function SampleAnalysis() {
 
           {/* Value Points */}
           <div className="lg:col-span-5 space-y-10 pl-4">
-            <div className="space-y-6">
+            <div
+              className="space-y-6 animate-slide-in-left duration-500"
+              style={{ animationDelay: "0ms" }}
+            >
               <div className="w-12 h-12 rounded-2xl bg-purple-500/10 flex items-center justify-center border border-purple-500/20">
                 <Zap className="w-6 h-6 text-purple-400" />
               </div>
@@ -83,7 +86,10 @@ export default function SampleAnalysis() {
               </p>
             </div>
 
-            <div className="space-y-6">
+            <div
+              className="space-y-6 animate-slide-in-left duration-500"
+              style={{ animationDelay: "150ms" }}
+            >
               <div className="w-12 h-12 rounded-2xl bg-purple-500/10 flex items-center justify-center border border-purple-500/20">
                 <Sparkles className="w-6 h-6 text-purple-400" />
               </div>

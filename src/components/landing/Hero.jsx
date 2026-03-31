@@ -9,7 +9,7 @@ export default function Hero() {
 
       <div className="container mx-auto px-6 text-center space-y-10">
         <div className="space-y-6 max-w-4xl mx-auto">
-          <h1 className="font-display text-5xl md:text-7xl lg:text-8xl text-zinc-100 leading-[1.1] tracking-tight">
+          <h1 className="animate-fade-in-down duration-700 font-display text-5xl md:text-7xl lg:text-8xl text-zinc-100 leading-[1.1] tracking-tight">
             Arte, Código y <span className="text-purple-400">Latencia</span>
           </h1>
           <p className="text-lg md:text-xl text-zinc-400 max-w-2xl mx-auto leading-relaxed">
@@ -37,17 +37,18 @@ export default function Hero() {
         </div>
 
         {/* Floating Badges */}
-        <div className="flex flex-wrap justify-center gap-3 pt-12">
-          {["Next.js 16+", "Tailwind v4", "Kokoro-TTS", "CubePath"].map(
-            (tag) => (
-              <span
-                key={tag}
-                className="px-4 py-1.5 rounded-full border border-zinc-800 bg-zinc-900/50 text-zinc-500 text-xs font-bold tracking-widest uppercase"
-              >
-                {tag}
-              </span>
-            ),
-          )}
+        <div
+          className="flex flex-wrap justify-center gap-3 pt-12 animate-fade-in"
+          style={{ animationDelay: "300ms" }}
+        >
+          {["Next.js", "Tailwind v4", "Kokoro-TTS", "CubePath"].map((tag) => (
+            <span
+              key={tag}
+              className="px-4 py-1.5 rounded-full border border-zinc-800 bg-zinc-900/50 text-zinc-500 text-xs font-bold tracking-widest uppercase"
+            >
+              {tag}
+            </span>
+          ))}
         </div>
       </div>
     </section>

@@ -11,7 +11,7 @@ const STACK = [
   {
     icon: Globe,
     title: "Frontend",
-    desc: "Next.js 16+, Tailwind v4, Recharts, Framer Motion.",
+    desc: "Next.js, Tailwind v4, Recharts, Framer Motion.",
   },
   {
     icon: Server,
@@ -35,7 +35,7 @@ export default function TechStack() {
     <section className="py-24 bg-zinc-950/40 relative">
       <div className="container mx-auto px-6 space-y-16">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-8">
-          <div className="space-y-4 max-w-xl">
+          <div className="space-y-4 max-w-xl timeline-view animate-slide-in-left animate-range-[entry_5%_contain_20%]">
             <p className="section-label">Obras de ingeniería</p>
             <h2 className="font-display text-4xl md:text-5xl text-zinc-100">
               Stack Tecnológico <span className="text-purple-400">&</span>{" "}
@@ -46,7 +46,7 @@ export default function TechStack() {
               GP.Micro de CubePath.
             </p>
           </div>
-          <div className="flex items-center gap-4 px-6 py-3 rounded-2xl bg-zinc-900 border border-zinc-800">
+          <div className="flex items-center gap-4 px-6 py-3 rounded-2xl bg-zinc-900 border border-zinc-800 timeline-view animate-zoom-in animate-range-[entry_5%_contain_20%]">
             <Cpu className="w-5 h-5 text-purple-400" />
             <div className="flex flex-col">
               <span className="text-zinc-500 text-[10px] uppercase font-bold tracking-widest">
@@ -63,7 +63,7 @@ export default function TechStack() {
           {STACK.map((item, idx) => (
             <div
               key={idx}
-              className="p-8 rounded-3xl bg-zinc-900/50 border border-zinc-800 hover:border-purple-500/30 hover:bg-zinc-900 transition-all group"
+              className="p-8 rounded-3xl bg-zinc-900/50 border border-zinc-800 hover:border-purple-500/30 hover:bg-zinc-900 transition-all group timeline-view animate-blurred-fade-in animate-range-[entry_10%_contain_30%]"
             >
               <item.icon className="w-8 h-8 text-zinc-500 group-hover:text-purple-400 transition-colors mb-6" />
               <h4 className="text-zinc-100 font-bold mb-3">{item.title}</h4>
@@ -75,7 +75,7 @@ export default function TechStack() {
         </div>
 
         {/* Infrastructure Deep Dive */}
-        <div className="bg-linear-to-br from-purple-500/10 to-transparent border border-purple-500/10 rounded-[2.5rem] p-8 md:p-12 overflow-hidden relative">
+        <div className="bg-linear-to-br from-purple-500/10 to-transparent border border-purple-500/10 rounded-[2.5rem] p-8 md:p-12 overflow-hidden relative timeline-view animate-zoom-in animate-range-cover">
           <ShieldCheck className="absolute top-8 right-8 w-24 h-24 text-purple-500/5 -rotate-12" />
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-8">

@@ -6,7 +6,7 @@ export default function TheHook() {
       <div className="absolute bottom-0 left-0 w-64 h-64 bg-purple-500/5 blur-[100px] rounded-full" />
 
       <div className="container mx-auto px-6 max-w-4xl space-y-12">
-        <div className="space-y-4">
+        <div className="space-y-4 timeline-view animate-slide-in-left animate-range-[entry_5%_contain_20%]">
           <p className="section-label text-purple-400">El Factor Humano</p>
           <h2 className="font-display text-4xl md:text-5xl text-zinc-100 leading-tight">
             Descubriendo las <span className="italic font-serif">Habilidades Transferibles</span>
@@ -14,7 +14,7 @@ export default function TheHook() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
-          <div className="md:col-span-8">
+          <div className="md:col-span-8 timeline-view animate-blurred-fade-in animate-range-[entry_10%_contain_30%]">
             <blockquote className="space-y-6">
               <p className="text-xl md:text-2xl text-zinc-300 font-serif leading-relaxed italic">
                 &quot;Uno de los retos en RRHH, sobre todo en Venezuela, es que
@@ -28,7 +28,7 @@ export default function TheHook() {
               </footer>
             </blockquote>
           </div>
-          <div className="md:col-span-4 bg-zinc-900/50 border border-zinc-800 p-8 rounded-3xl space-y-4 rotate-2 hover:rotate-0 transition-transform duration-500">
+          <div className="md:col-span-4 bg-zinc-900/50 border border-zinc-800 p-8 rounded-3xl space-y-4 rotate-2 hover:rotate-0 transition-transform duration-500 timeline-view animate-zoom-in animate-range-[entry_5%_contain_20%]">
             <h4 className="text-purple-400 font-bold text-sm uppercase tracking-widest">
               El Propósito
             </h4>

@@ -12,10 +12,11 @@ export default function SkillsMatrix({ skills }) {
           Técnicas
         </p>
         <div className="flex flex-wrap gap-2">
-          {technicalSkills?.map((skill) => (
+          {technicalSkills?.map((skill, idx) => (
             <span
               key={skill}
-              className="text-[11px] md:text-xs bg-zinc-800 border border-zinc-700 text-zinc-300 px-2.5 md:px-3 py-1 md:py-1.5 rounded-lg wrap-break-word max-w-full text-center"
+              className="animate-fade-in text-[11px] md:text-xs bg-zinc-800 border border-zinc-700 text-zinc-300 px-2.5 md:px-3 py-1 md:py-1.5 rounded-lg wrap-break-word max-w-full text-center"
+              style={{ animationDelay: `${idx * 75}ms` }}
             >
               {skill}
             </span>
@@ -29,10 +30,11 @@ export default function SkillsMatrix({ skills }) {
           Blandas
         </p>
         <div className="flex flex-wrap gap-2">
-          {softSkills?.map((skill) => (
+          {softSkills?.map((skill, idx) => (
             <span
               key={skill}
-              className="text-[11px] md:text-xs bg-zinc-800/50 border border-zinc-800 text-zinc-400 px-2.5 md:px-3 py-1 md:py-1.5 rounded-lg wrap-break-word max-w-full text-center"
+              className="animate-fade-in text-[11px] md:text-xs bg-zinc-800/50 border border-zinc-800 text-zinc-400 px-2.5 md:px-3 py-1 md:py-1.5 rounded-lg wrap-break-word max-w-full text-center"
+              style={{ animationDelay: `${idx * 75}ms` }}
             >
               {skill}
             </span>

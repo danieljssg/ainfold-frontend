@@ -7,6 +7,7 @@ import { cn } from "@/lib/utils";
 
 export default function Navigation() {
   const [scrolled, setScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { isAuthenticated, logout } = useAuth();
 
   useEffect(() => {
@@ -22,7 +23,7 @@ export default function Navigation() {
       <nav
         className={cn(
           "w-full px-4 md:px-12 py-3 md:py-4 flex items-center justify-between transition-all duration-500 ease-in-out shadow-2xl pointer-events-auto hover:bg-purple-950/15",
-          scrolled
+          scrolled || isMobileMenuOpen
             ? "backdrop-blur-xl bg-black/60 border-b "
             : "bg-transparent border-b border-transparent",
         )}
@@ -90,7 +91,12 @@ export default function Navigation() {
           )}
         </div>
 
-        <MobileMenu isAuthenticated={isAuthenticated} logout={logout} />
+        <MobileMenu
+          isAuthenticated={isAuthenticated}
+          logout={logout}
+          isOpen={isMobileMenuOpen}
+          setIsOpen={setIsMobileMenuOpen}
+        />
       </nav>
     </header>
   );
